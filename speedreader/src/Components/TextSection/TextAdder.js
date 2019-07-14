@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addText } from '../../Store/actions';
+import { addText, chooseThisText } from '../../Store/actions';
 import styled from 'styled-components';
 
 const StyledTextAdder = styled.div`
@@ -59,12 +59,22 @@ this.setState({
     });
   };
 
+  chooseThisText = (textName) => {
+    this.props.chooseThisText(textName[0]);
+  };
+
   render() {
     
     return ( 
       <StyledTextAdder>
-     { this.props.savedTexts.toString() !== '' ?
-      (this.props.savedTexts.map(item => item.name.map(text => <p>{text}</p>))) : null
+     { this.props.savedTexts.toString() ?
+      (this.props.savedTexts.map(item => 
+        item.name.map((text, index) =>
+         <p 
+         key={index}
+         onClick={() => this.chooseThisText(item.name)}>
+         {text}
+         </p>))) : null
     } 
         <h1>Add text to train your reading skills !</h1>
         <div className="input-plus">
@@ -85,4 +95,4 @@ const mapStateToProps = state => {
   };
 };
  
-export default connect(mapStateToProps, { addText })(TextAdder);
+export default connect(mapStateToProps, { addText, chooseThisText })(TextAdder);

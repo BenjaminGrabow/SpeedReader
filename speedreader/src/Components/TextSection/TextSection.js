@@ -133,6 +133,10 @@ class TextSection extends React.Component {
 
   };
 
+  stop = (e) => {
+    e.stopPropagation();
+  }
+
   render() {
 
     const styleTextSection = {
@@ -155,6 +159,9 @@ class TextSection extends React.Component {
         <i 
         onClick={this.start}
         className="fa fa-play" />
+        <i 
+        className="fa fa-pause"
+        onClick={this.stop}/>
         <i 
         onClick={this.props.openSettings}
         className="fa fa-wrench"/>

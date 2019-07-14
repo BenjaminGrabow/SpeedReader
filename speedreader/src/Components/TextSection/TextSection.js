@@ -112,7 +112,7 @@ class TextSection extends React.Component {
     };
 
   start = () => {
-    const texts = this.props.text;
+    const texts = this.props.currentText;
 
     const wordsPerSecond = this.state.number / 60;
     
@@ -214,7 +214,7 @@ class TextSection extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    text: state.text,
+    currentText: state.currentText,
     settings: state.settings
   };
 };

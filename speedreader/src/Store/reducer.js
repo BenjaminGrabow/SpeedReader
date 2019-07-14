@@ -1,7 +1,7 @@
 import * as types from './actions';
 
 const initialState = {
-  text: [],
+  currentText: [],
   addText: true,
   settings: false,
 }
@@ -9,7 +9,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case types.ADD_TEXT:
-      return { ...state, text: action.payload, addText: false };
+      return { ...state, currentText: action.payload, addText: false };
 
     case types.OPEN_SETTINGS:
       return { ...state, settings: true };

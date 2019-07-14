@@ -17,6 +17,9 @@ const findText = state.savedTexts.filter(texts => texts.name[0] === action.name)
 
       return { ...state, addText: false, currentText: findText[0].text };
 
+      case types.OPEN_ADD_SETTINGS:
+          return { ...state, addText: true };
+
     case types.OPEN_SETTINGS:
       return { ...state, settings: true };
 

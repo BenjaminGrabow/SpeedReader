@@ -1,5 +1,5 @@
 import React from 'react';
-import { closeSettings, openSettings } from '../../Store/actions';
+import { closeSettings, openSettings, openAddSettings } from '../../Store/actions';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -162,7 +162,7 @@ class TextSection extends React.Component {
           <div className="close">
           <i 
           onClick={this.props.closeSettings}
-          class="fa fa-window-close"/>
+          className="fa fa-window-close"/>
           </div>
         <div className="row">
         <p>Words per minute</p>
@@ -207,6 +207,9 @@ class TextSection extends React.Component {
           placeholder="Width"/>
           </div>
         </div>
+        <i
+      onClick={this.props.openAddSettings}
+      className="fa fa-plus-square"/>
       </StyledTextSection>
     );
   }
@@ -219,4 +222,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { closeSettings, openSettings })(TextSection);
+export default connect(mapStateToProps, { closeSettings, openSettings, openAddSettings })(TextSection);

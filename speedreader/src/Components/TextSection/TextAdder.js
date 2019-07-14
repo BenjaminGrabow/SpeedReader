@@ -57,7 +57,10 @@ this.setState({
     });
   };
 
-  render() { 
+  render() {
+    if(this.props.savedTexts){
+      
+    } 
     return ( 
       <StyledTextAdder>
         <h1>Add text to train your reading skills !</h1>
@@ -71,5 +74,11 @@ this.setState({
      );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    savedTexts: state.savedTexts,
+  };
+};
  
-export default connect(null, { addText })(TextAdder);
+export default connect(mapStateToProps, { addText })(TextAdder);

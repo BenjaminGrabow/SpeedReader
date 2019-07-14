@@ -4,13 +4,18 @@ const initialState = {
   currentText: [],
   addText: true,
   settings: false,
+  savedTexts: [],
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case types.ADD_TEXT:
-      return { ...state, currentText: action.payload, addText: false };
+      const safeNewText = state.savedTexts.map((text, index, array) => array[array.length] = action.payload
+      );
 
+      return { ...state, savedTexts: safeNewText };
+
+      // addText: false
     case types.OPEN_SETTINGS:
       return { ...state, settings: true };
 

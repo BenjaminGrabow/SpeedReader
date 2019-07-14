@@ -102,6 +102,7 @@ class TextSection extends React.Component {
       textFontSize: '',
       textHeight: '',
       textWidth: '',
+      textColor: '',
     }
   }
 
@@ -174,12 +175,21 @@ class TextSection extends React.Component {
          min="60" />
          </div>
          <div className="row">
+        <p>Text Color</p>
+        <input type="text"
+         name="textColor" 
+         value={this.state.textColor} 
+         onChange={this.changeHandler}
+         placeholder="Text Color"
+         />
+         </div>
+         <div className="row">
            <p>Background Color</p>
         <input type="text"
          name="textBackgroundColor" 
          value={this.state.textBackgroundColor} 
          onChange={this.changeHandler}
-          placeholder="textBackgroundColor"
+          placeholder="Background Color"
            />
             </div>
            <div className="row">

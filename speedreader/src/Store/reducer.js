@@ -11,7 +11,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case types.ADD_TEXT:
 
-      return { ...state, savedTexts: [...state.savedTexts, { text: action.payload }] };
+      return { ...state, savedTexts: [...state.savedTexts, { text: action.textFromInput, name: [action.name] }] };
 
       // addText: false
     case types.OPEN_SETTINGS:

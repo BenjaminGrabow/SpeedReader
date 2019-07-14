@@ -1,10 +1,11 @@
 import * as types from './actions';
 
 const initialState = {
+  savedTexts: [],
   currentText: [],
+  textIfPause: [],
   addText: true,
   settings: false,
-  savedTexts: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -13,12 +14,18 @@ const reducer = (state = initialState, action) => {
       return { ...state, savedTexts: [...state.savedTexts, { text: action.textFromInput, name: [action.name] }] };
 
     case types.CHOOSE_THIS_TEXT:
-const findText = state.savedTexts.filter(texts => texts.name[0] === action.name);
+      const findText = state.savedTexts.filter(texts => texts.name[0] === action.name);
 
       return { ...state, addText: false, currentText: findText[0].text };
 
-      case types.OPEN_ADD_SETTINGS:
-          return { ...state, addText: true };
+    case types.MAKE_PAUSE:
+      const onlyTheTextAfterTheCurrentWord = state.currentText.filter( word =>
+       state.currentText.indexOf(word) >= state.currentText.indexOf(action.currentWord) );
+
+      return { ...state, currentText: [action.currentWord], textIfPause: onlyTheTextAfterTheCurrentWord };
+
+    case types.OPEN_ADD_SETTINGS:
+      return { ...state, addText: true };
 
     case types.OPEN_SETTINGS:
       return { ...state, settings: true };

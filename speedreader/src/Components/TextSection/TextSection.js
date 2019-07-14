@@ -1,5 +1,5 @@
 import React from 'react';
-import { closeSettings, openSettings, openAddSettings } from '../../Store/actions';
+import { closeSettings, openSettings, openAddSettings, makePause } from '../../Store/actions';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -93,11 +93,12 @@ cursor: pointer; */
 }
 `; 
 
+
 class TextSection extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      number: '',
+      number: 240,
       textBackgroundColor: '',
       textFontSize: '',
       textHeight: '',
@@ -105,48 +106,47 @@ class TextSection extends React.Component {
       textColor: '',
     }
   }
-
+  
   changeHandler = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     });
-    };
-
+  };
+  
   start = () => {
-    const texts = this.props.currentText;
-
+    
     const wordsPerSecond = this.state.number / 60;
     
     const resultForSetInterval = 1000 / wordsPerSecond 
-
+    
     let i = 0;
 
     const increment = () => {
-
-      if (texts[i] !== texts[texts.length]) {
-        document.querySelector('.text').textContent = texts[i];
+      if (this.props.currentText[i] !== this.props.currentText[this.props.currentText.length]) {
+        document.querySelector('.text').textContent = this.props.currentText[i];
         i += 1;
       }
     };
 
     setInterval(increment, resultForSetInterval);
-
   };
-
-  stop = (e) => {
-    e.stopPropagation();
-  }
-
+  
+  pause = () => {
+    const currentWord = document.querySelector('.text').textContent;
+    
+    this.props.makePause(currentWord);
+  };
+  
   render() {
-
+     
     const styleTextSection = {
       color: this.state.textColor,
       background: this.state.textBackgroundColor,
       fontSize: `${this.state.textFontSize}px`,
       height: `${this.state.textHeight}px`,
       width:  `${this.state.textWidth}px`,
-  };
-
+    };
+    
     return (
       <StyledTextSection>
         <div 
@@ -161,7 +161,7 @@ class TextSection extends React.Component {
         className="fa fa-play" />
         <i 
         className="fa fa-pause"
-        onClick={this.stop}/>
+        onClick={this.pause}/>
         <i 
         onClick={this.props.openSettings}
         className="fa fa-wrench"/>
@@ -196,8 +196,8 @@ class TextSection extends React.Component {
          name="textBackgroundColor" 
          value={this.state.textBackgroundColor} 
          onChange={this.changeHandler}
-          placeholder="Background Color"
-           />
+         placeholder="Background Color"
+         />
             </div>
            <div className="row">
            <p>Fontsize</p>
@@ -205,7 +205,7 @@ class TextSection extends React.Component {
          name="textFontSize" 
          value={this.state.textFontSize} 
          onChange={this.changeHandler}
-          placeholder="Fontsize" />
+         placeholder="Fontsize" />
            </div>
           <div className="row">
            <p>Height</p>
@@ -213,7 +213,7 @@ class TextSection extends React.Component {
          name="textHeight" 
          value={this.state.textHeight} 
          onChange={this.changeHandler}
-          placeholder="Height" />
+         placeholder="Height" />
           </div>
           <div className="row">
            <p>Width</p>
@@ -221,7 +221,7 @@ class TextSection extends React.Component {
          name="textWidth" 
          value={this.state.textWidth} 
          onChange={this.changeHandler}
-          placeholder="Width"/>
+         placeholder="Width"/>
           </div>
         </div>
         <i
@@ -239,4 +239,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { closeSettings, openSettings, openAddSettings })(TextSection);
+export default connect(mapStateToProps, { closeSettings, openSettings, openAddSettings, makePause })(TextSection);

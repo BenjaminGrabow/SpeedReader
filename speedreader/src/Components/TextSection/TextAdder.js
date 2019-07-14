@@ -40,6 +40,7 @@ class TextAdder extends React.Component {
     super(props);
     this.state = { 
       text: '',
+      name: '',
      }
   }
 
@@ -54,22 +55,25 @@ this.setState({
 
     this.setState({
       text: '',
+      name: ''
     });
   };
 
   render() {
-    if(this.props.savedTexts){
-      
-    } 
+    
     return ( 
       <StyledTextAdder>
+     { this.props.savedTexts.toString() !== '' ?
+      (this.props.savedTexts.map(item => item.name.map(text => <p>{text}</p>))) : null
+    } 
         <h1>Add text to train your reading skills !</h1>
-        <idv className="input-plus">
+        <div className="input-plus">
+        <input type="text" name="name" value={this.state.name} onChange={this.changeHandler} placeholder="Name" />
       <input type="text" name="text" value={this.state.text} onChange={this.changeHandler} placeholder="Text" />
       <i
       onClick={this.addTextToRedux} 
       className="fa fa-plus-square"/>
-      </idv>
+      </div>
       </StyledTextAdder>
      );
   }

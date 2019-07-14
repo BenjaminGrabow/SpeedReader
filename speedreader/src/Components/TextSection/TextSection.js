@@ -1,5 +1,5 @@
 import React from 'react';
-import { closeSettings, openSettings, openAddSettings, makePause } from '../../Store/actions';
+import { closeSettings, openSettings, openAddSettings, makePause, showTextAfterPause } from '../../Store/actions';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -114,7 +114,10 @@ class TextSection extends React.Component {
   };
   
   start = () => {
-    
+  if(this.props.currentText[0] === document.querySelector('.text').textContent ) {
+    this.props.showTextAfterPause();
+  }  
+  
     const wordsPerSecond = this.state.number / 60;
     
     const resultForSetInterval = 1000 / wordsPerSecond 
@@ -235,8 +238,9 @@ class TextSection extends React.Component {
 const mapStateToProps = state => {
   return {
     currentText: state.currentText,
-    settings: state.settings
+    settings: state.settings,
+    currentText: state.currentText
   };
 };
 
-export default connect(mapStateToProps, { closeSettings, openSettings, openAddSettings, makePause })(TextSection);
+export default connect(mapStateToProps, { closeSettings, openSettings, openAddSettings, makePause, showTextAfterPause })(TextSection);

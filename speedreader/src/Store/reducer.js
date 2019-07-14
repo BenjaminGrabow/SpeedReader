@@ -24,6 +24,10 @@ const reducer = (state = initialState, action) => {
 
       return { ...state, currentText: [action.currentWord], textIfPause: onlyTheTextAfterTheCurrentWord };
 
+      case types.SHOW_TEXT_AFTER_PAUSE:
+    
+          return { ...state, currentText: state.textIfPause };
+
     case types.OPEN_ADD_SETTINGS:
       return { ...state, addText: true };
 

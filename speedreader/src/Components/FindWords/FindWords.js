@@ -119,6 +119,26 @@ arrayOfChoosenWords.push(words[Math.floor(Math.random() * lengthOfWords)]);
 
 console.log(arrayOfChoosenWords);
 
+let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+
+let words = [ 'goodbye'];
+
+let splitter = alphabet.split('');
+
+let insertWord = splitter.splice(Math.floor(Math.random() * splitter.length),
+ 0, words.toString());
+
+for(let i = 0; i < splitter.length; i++){
+  if(splitter[i].length > 1 ) {
+    splitter[i] = splitter[i].split('');
+    let indexOfWord = splitter.indexOf(splitter[i]);
+    splitter[indexOfWord].map((letter, index) => splitter[indexOfWord + index] = letter)
+  }
+}
+
+console.log(splitter)
+
+
 
   };
 

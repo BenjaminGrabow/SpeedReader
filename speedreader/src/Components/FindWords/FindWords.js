@@ -134,7 +134,7 @@ for(let i = 0; i < splitter.length; i++){
     splitter[i] = splitter[i].split('') ;
     let indexOfWord = splitter.indexOf(splitter[i]);
     splitter[indexOfWord].map((letter, index) =>  {
-      splitter[indexOfWord + index] = ({ letter , searchedWord: 'yes'});
+     return splitter[indexOfWord + index] = ({ letter , searchedWord: 'yes'});
       })
   } 
 }

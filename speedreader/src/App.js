@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Components/Header/Header';
-import TextContainer from './Components/TextContainer/TextContainer';
+import TextContainer from './Components/ReadFastText/TextContainer/TextContainer';
 import books from './books.jpg'
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { closeSettings, openSettings, openAddSettings, makePause, showTextAfterPause } from '../../Store/actions';
+import { closeSettings, openSettings, openAddSettings, makePause, showTextAfterPause } from '../../../Store/actions';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 

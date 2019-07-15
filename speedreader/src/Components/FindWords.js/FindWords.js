@@ -1,12 +1,22 @@
 import React from 'react';
+import styled from 'styled-components';
 
-class FindWords extends Component {
+const StyledFindWords = styled.div`
+
+`;
+
+class FindWords extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {  }
+    this.state = { 
+     }
   }
   render() { 
-    return (  );
+    return ( 
+      <StyledFindWords>
+        
+      </StyledFindWords>
+     );
   }
 }
  

@@ -104,6 +104,24 @@ class FindWords extends React.Component {
     });
   };
 
+  start = () => {
+let copyArray =this.state.letters;
+
+const lengthOfWords = words.length;
+
+// const generateRandomNumber = Math.floor(Math.random() * lengthOfWords);
+
+const arrayOfChoosenWords = [];
+
+arrayOfChoosenWords.push(words[Math.floor(Math.random() * lengthOfWords)]);
+arrayOfChoosenWords.push(words[Math.floor(Math.random() * lengthOfWords)]);
+arrayOfChoosenWords.push(words[Math.floor(Math.random() * lengthOfWords)]);
+
+console.log(arrayOfChoosenWords);
+
+
+  };
+
   render() {
     return (
       <StyledFindWords>
@@ -112,6 +130,7 @@ class FindWords extends React.Component {
             <p>{letter}</p>
           </div>
         })}
+        <button onClick={this.start}>Start</button>
       </StyledFindWords>
     );
   }

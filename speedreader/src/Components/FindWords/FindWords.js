@@ -150,6 +150,7 @@ console.log(all)
 
 // works only for one Word (to insert in existing array(which is the state letter))
 // easiest solution probably with setInterveral and call function so long all words inserted
+// now add OnClick for all letters with searchWord with yes and try to add more words at once 
 
 
   };

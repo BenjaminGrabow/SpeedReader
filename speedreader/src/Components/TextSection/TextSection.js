@@ -118,6 +118,7 @@ class TextSection extends React.Component {
   start = () => {
   if(this.state.pause ) {
     this.props.showTextAfterPause();
+    
   }  else if(!this.state.pressedPlay) {
   
     const wordsPerSecond = this.state.number / 60;

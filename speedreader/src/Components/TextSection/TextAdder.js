@@ -10,6 +10,28 @@ justify-content: center;
 align-items: center;
 color: white;
 
+.text {
+  width: 10rem;
+  height: 8rem;
+  background: white;
+  color: black;
+  text-align: center;
+
+  .close {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+
+  i {
+    font-size: 2rem;
+
+    &:hover {
+      color: red;
+    }
+  }
+}
+}
+
 .input-plus {
 display: flex;
 justify-content: space-around;
@@ -69,12 +91,21 @@ this.setState({
       <StyledTextAdder>
      { this.props.savedTexts.toString() ?
       (this.props.savedTexts.map(item => 
-        item.name.map((text, index) =>
-         <p 
-         key={index}
-         onClick={() => this.chooseThisText(item.name)}>
+        item.name.map((text, index) => {
+         return <div
+         onClick={() => this.chooseThisText(item.name)}
+         key={index} 
+         className="text"> 
+          <div className="close">
+          <i 
+          // onClick={this.props.closeSettings}
+          className="fa fa-window-close"/>
+          </div>
+         <p>
          {text}
-         </p>))) : null
+        </p>
+        </div>
+        }))) : null
     } 
         <h1>Add text to train your reading skills !</h1>
         <div className="input-plus">

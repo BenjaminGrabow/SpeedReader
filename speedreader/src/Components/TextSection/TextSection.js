@@ -105,6 +105,7 @@ class TextSection extends React.Component {
       textWidth: '',
       textColor: '',
       pause: false,
+      pressedPlay: false,
     }
   }
   
@@ -117,7 +118,7 @@ class TextSection extends React.Component {
   start = () => {
   if(this.state.pause ) {
     this.props.showTextAfterPause();
-  }  else {
+  }  else if(!this.state.pressedPlay) {
   
     const wordsPerSecond = this.state.number / 60;
     
@@ -137,6 +138,7 @@ class TextSection extends React.Component {
 
   this.setState({
     pause: false,
+    pressedPlay: true,
   });
   };
   
@@ -144,8 +146,10 @@ class TextSection extends React.Component {
     const currentWord = document.querySelector('.text').textContent;
     
     this.props.makePause(currentWord);
+    
     this.setState({
       pause: true,
+      pressedPlay: false,
     });
   };
   

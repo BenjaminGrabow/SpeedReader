@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Components/Header/Header';
 import TextContainer from './Components/ReadFastText/TextContainer/TextContainer';
+import FindWords from './Components/FindWords/FindWords';
 import books from './books.jpg'
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
@@ -18,7 +19,8 @@ function App() {
   return (
     <StyledDiv>
       <Header/>
-      <Route path="/app" component={TextContainer} />
+      <Route path="/speed_trainer" component={TextContainer} />
+      <Route path="/find_words" component={FindWords} />
     </StyledDiv>
   );
 }

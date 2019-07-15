@@ -104,6 +104,7 @@ class TextSection extends React.Component {
       textHeight: '',
       textWidth: '',
       textColor: '',
+      pause: false,
     }
   }
   
@@ -114,9 +115,9 @@ class TextSection extends React.Component {
   };
   
   start = () => {
-  if(this.props.currentText[0] === document.querySelector('.text').textContent ) {
+  if(this.state.pause ) {
     this.props.showTextAfterPause();
-  }  
+  }  else {
   
     const wordsPerSecond = this.state.number / 60;
     
@@ -132,12 +133,20 @@ class TextSection extends React.Component {
     };
 
     setInterval(increment, resultForSetInterval);
+  }
+
+  this.setState({
+    pause: false,
+  });
   };
   
   pause = () => {
     const currentWord = document.querySelector('.text').textContent;
     
     this.props.makePause(currentWord);
+    this.setState({
+      pause: true,
+    });
   };
   
   render() {
@@ -239,7 +248,6 @@ const mapStateToProps = state => {
   return {
     currentText: state.currentText,
     settings: state.settings,
-    currentText: state.currentText
   };
 };
 

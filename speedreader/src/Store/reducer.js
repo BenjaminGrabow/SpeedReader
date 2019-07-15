@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
     case types.MAKE_PAUSE:
       const onlyTheTextAfterTheCurrentWord = state.currentText.filter( word =>
        state.currentText.indexOf(word) >= state.currentText.indexOf(action.currentWord) );
-
+// BUG !!!!
       return { ...state, currentText: [action.currentWord], textIfPause: onlyTheTextAfterTheCurrentWord };
 
       case types.SHOW_TEXT_AFTER_PAUSE:

@@ -128,15 +128,25 @@ let splitter = alphabet.split('');
 let insertWord = splitter.splice(Math.floor(Math.random() * splitter.length),
  0, words.toString());
 
+
 for(let i = 0; i < splitter.length; i++){
   if(splitter[i].length > 1 ) {
-    splitter[i] = splitter[i].split('');
+    splitter[i] = splitter[i].split('') ;
     let indexOfWord = splitter.indexOf(splitter[i]);
-    splitter[indexOfWord].map((letter, index) => splitter[indexOfWord + index] = letter)
-  }
+    splitter[indexOfWord].map((letter, index) =>  {
+      splitter[indexOfWord + index] = ({ letter , searchedWord: 'yes'});
+      })
+  } 
 }
 
-console.log(splitter)
+const all = splitter.map(letter => {
+  if(typeof letter === 'string'){
+    letter = ({ letter, searchedWord: 'no' })
+  } return letter;
+})
+
+
+console.log(all)
 
 // works only for one Word (to insert in existing array(which is the state letter))
 // easiest solution probably with setInterveral and call function so long all words inserted

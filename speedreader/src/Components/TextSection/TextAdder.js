@@ -10,12 +10,17 @@ justify-content: center;
 align-items: center;
 color: white;
 
+.all-texts {
+  display: flex;
+  flex-wrap: wrap;
+
 .text {
   width: 10rem;
   height: 8rem;
   background: white;
   color: black;
   text-align: center;
+  margin: 1rem;
 
   .close {
   display: flex;
@@ -29,6 +34,7 @@ color: white;
       color: red;
     }
   }
+}
 }
 }
 
@@ -90,7 +96,8 @@ this.setState({
     return ( 
       <StyledTextAdder>
      { this.props.savedTexts.toString() ?
-      (this.props.savedTexts.map(item => 
+      (<div className="all-texts">
+      {this.props.savedTexts.map(item => 
         item.name.map((text, index) => {
          return <div
          onClick={() => this.chooseThisText(item.name)}
@@ -105,7 +112,9 @@ this.setState({
          {text}
         </p>
         </div>
-        }))) : null
+        }))}
+        </div>
+        ) : null
     } 
         <h1>Add text to train your reading skills !</h1>
         <div className="input-plus">

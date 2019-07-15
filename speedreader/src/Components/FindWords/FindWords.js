@@ -97,7 +97,9 @@ class FindWords extends React.Component {
 
     let letters = 'abcdefghijklmnopqrstuvwxyz';
 
-    const splitAllLetters = letters.repeat(7).split('');
+    const splitAllLetters = letters.split('');
+    // .repeat(7)
+
 
     this.setState({
       letters: shuffle(splitAllLetters),
@@ -105,7 +107,7 @@ class FindWords extends React.Component {
   };
 
   start = () => {
-let copyArray =this.state.letters;
+// let copyArray =this.state.letters;
 
 const lengthOfWords = words.length;
 
@@ -114,19 +116,19 @@ const lengthOfWords = words.length;
 const arrayOfChoosenWords = [];
 
 arrayOfChoosenWords.push(words[Math.floor(Math.random() * lengthOfWords)]);
-arrayOfChoosenWords.push(words[Math.floor(Math.random() * lengthOfWords)]);
-arrayOfChoosenWords.push(words[Math.floor(Math.random() * lengthOfWords)]);
+// arrayOfChoosenWords.push(words[Math.floor(Math.random() * lengthOfWords)]);
+// arrayOfChoosenWords.push(words[Math.floor(Math.random() * lengthOfWords)]);
 
-console.log(arrayOfChoosenWords);
+
 
 let alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
-let words = [ 'goodbye'];
+// let words = [ 'goodbye'];
 
 let splitter = alphabet.split('');
 
 let insertWord = splitter.splice(Math.floor(Math.random() * splitter.length),
- 0, words.toString());
+ 0, arrayOfChoosenWords.toString());
 
 
 for(let i = 0; i < splitter.length; i++){
@@ -147,22 +149,33 @@ const all = splitter.map(letter => {
 
 
 console.log(all)
+this.setState({
+  letters: all
+})
 
 // works only for one Word (to insert in existing array(which is the state letter))
 // easiest solution probably with setInterveral and call function so long all words inserted
 // now add OnClick for all letters with searchWord with yes and try to add more words at once 
+// make objects now to strings again and call only first sequence ([0])
 
 
   };
 
   render() {
+    if(this.state.letters.letter) {
+      return this.state.letters.map(letter => {
+        return <div className="letters">
+          <p>{letter.letter}</p>
+        </div>
+        })
+    }
     return (
       <StyledFindWords>
-        {this.state.letters.map(letter => {
+        {this.state.letters.letter ? (this.state.letters.map(letter => {
           return <div className="letters">
-            <p>{letter}</p>
+            <p>{letter.letter}</p>
           </div>
-        })}
+        })) : null }
         <button onClick={this.start}>Start</button>
       </StyledFindWords>
     );

@@ -138,6 +138,8 @@ for(let i = 0; i < splitter.length; i++){
 
 console.log(splitter)
 
+// works only for one Word (to insert in existing array(which is the state letter))
+// easiest solution probably with setInterveral and call function so long all words inserted
 
 
   };

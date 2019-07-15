@@ -35,6 +35,11 @@ color: white;
     }
   }
 }
+
+p {
+  width: 100%;
+  height: 100%;
+}
 }
 }
 
@@ -100,7 +105,6 @@ this.setState({
       {this.props.savedTexts.map(item => 
         item.name.map((text, index) => {
          return <div
-         onClick={() => this.chooseThisText(item.name)}
          key={index} 
          className="text"> 
           <div className="close">
@@ -108,7 +112,8 @@ this.setState({
           onClick={() => this.props.deleteText(item.name)}
           className="fa fa-window-close"/>
           </div>
-         <p>
+         <p
+          onClick={() => this.chooseThisText(item.name)}>
          {text}
         </p>
         </div>

@@ -20,12 +20,12 @@ const reducer = (state = initialState, action) => {
 
     case types.MAKE_PAUSE:
       const onlyTheTextAfterTheCurrentWord = state.currentText.slice(state.currentText.indexOf(action.currentWord), state.currentText.length);
-    
+
       return { ...state, currentText: [action.currentWord], textIfPause: onlyTheTextAfterTheCurrentWord };
 
-      case types.SHOW_TEXT_AFTER_PAUSE:
-    
-          return { ...state, currentText: state.textIfPause };
+    case types.SHOW_TEXT_AFTER_PAUSE:
+
+      return { ...state, currentText: state.textIfPause };
 
     case types.OPEN_ADD_SETTINGS:
       return { ...state, addText: true };
@@ -35,6 +35,11 @@ const reducer = (state = initialState, action) => {
 
     case types.CLOSE_SETTINGS:
       return { ...state, settings: false };
+
+    case types.DELETE_TEXT:
+      const filterText = state.savedTexts.filter(text => text.name[0] !== action.textName[0]);
+
+      return { ...state, savedTexts: filterText };
 
     default: return state;
   }

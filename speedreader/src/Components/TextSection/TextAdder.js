@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addText, chooseThisText } from '../../Store/actions';
+import { addText, chooseThisText, deleteText } from '../../Store/actions';
 import styled from 'styled-components';
 
 const StyledTextAdder = styled.div`
@@ -105,7 +105,7 @@ this.setState({
          className="text"> 
           <div className="close">
           <i 
-          // onClick={this.props.closeSettings}
+          onClick={() => this.props.deleteText(item.name)}
           className="fa fa-window-close"/>
           </div>
          <p>
@@ -135,4 +135,4 @@ const mapStateToProps = state => {
   };
 };
  
-export default connect(mapStateToProps, { addText, chooseThisText })(TextAdder);
+export default connect(mapStateToProps, { addText, chooseThisText, deleteText })(TextAdder);

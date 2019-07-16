@@ -134,13 +134,13 @@ let searchedWords = [];
     // // .repeat(7)
 
 
-const lengthOfWords = words.length;
+const lengthOfWordsArray = words.length;
 
 // const generateRandomNumber = Math.floor(Math.random() * lengthOfWords);
 
 const arrayOfChoosenWord = [];
 
-arrayOfChoosenWord.push(words[Math.floor(Math.random() * lengthOfWords)]);
+const pushRandomWordFromArrayWordsToNewArray = arrayOfChoosenWord.push(words[Math.floor(Math.random() * lengthOfWordsArray)]);
 
 const pushChoosenWordToSearchedWordVar = searchedWords.push(arrayOfChoosenWord[0]);
 

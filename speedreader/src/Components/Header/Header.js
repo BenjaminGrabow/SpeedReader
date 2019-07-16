@@ -23,8 +23,9 @@ class Header extends React.Component {
     return ( 
       <StyledHeader>
 <h1>SpeedReader</h1>
-<NavLink to="/speed_trainer">App</NavLink>
-<NavLink to="/find_words">App</NavLink>
+<NavLink to="/speed_trainer">Main App</NavLink>
+<NavLink to="/find_words">Find Words</NavLink>
+<NavLink to="/memory">Memory</NavLink>
       </StyledHeader>
      );
   }

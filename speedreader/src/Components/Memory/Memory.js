@@ -1,22 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const pictures = [{back: 'https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
-{back: 'https://images.pexels.com/photos/1827212/pexels-photo-1827212.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
-{back: 'https://images.pexels.com/photos/2625782/pexels-photo-2625782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
-{back: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
-{back: 'https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
-{back: 'https://images.pexels.com/photos/1827212/pexels-photo-1827212.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
-{back: 'https://images.pexels.com/photos/2625782/pexels-photo-2625782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
-{back: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'}];
 
 
 const StyledMemory = styled.div`
@@ -66,31 +50,76 @@ img {
 }
 `;
 
+const shuffle = (array) => {
+  
+  let copyOfArray = [...array];
+  
+  let currentIndex = copyOfArray.length, temporaryValue, randomIndex;
+  
+  while (0 !== currentIndex) {
+    
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    
+    temporaryValue = copyOfArray[currentIndex];
+    copyOfArray[currentIndex] = copyOfArray[randomIndex];
+    copyOfArray[randomIndex] = temporaryValue;
+  }
+  
+  return array;
+};
+
 class Memory extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      pictures: pictures,
+      pictures: [],
       firstPickedPicture: '',
       userFoundAllPictures: false,
-     }
+    }
   }
+  
+  componentDidMount = () => {
+    const pictures = [{back: 'https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
+    {back: 'https://images.pexels.com/photos/1827212/pexels-photo-1827212.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
+    {back: 'https://images.pexels.com/photos/2625782/pexels-photo-2625782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
+    {back: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
+    {back: 'https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
+    {back: 'https://images.pexels.com/photos/1827212/pexels-photo-1827212.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
+    {back: 'https://images.pexels.com/photos/2625782/pexels-photo-2625782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
+    {back: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'}];
 
+    const mixedPictures = shuffle(pictures);
+    
+    this.setState({
+      pictures: mixedPictures
+    });
+    
+  };
+  
   safeChoosenPicture = (e) => {
     if(!this.state.firstPickedPicture){
-     this.setState({
-       firstPickedPicture: e.target.src
-     }); 
+      this.setState({
+        firstPickedPicture: e.target.src
+      }); 
     } else {
       if(this.state.firstPickedPicture === e.target.src){
         const deleteFoundPicturePair = this.state.pictures.map(picture => {
           if(picture.back === e.target.src) {
-           picture.front = 'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
-           picture.back = 'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
+            picture.front = 'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
+            picture.back = 'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
           } 
           return picture;
         });
-
+        
         this.setState({
           pictures: deleteFoundPicturePair,
           firstPickedPicture: '',
@@ -111,6 +140,16 @@ class Memory extends React.Component {
          });
        }
   };
+
+  playAgain = () => {
+    
+    this.setState({
+      userFoundAllPictures: false,
+    });
+
+    this.componentDidMount();
+  };
+// make for new if statement between render and return a class which switches between classes of and on !!!
 
   render() {
     if(this.state.userFoundAllPictures){

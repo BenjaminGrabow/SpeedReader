@@ -55,18 +55,31 @@ const words = ["underheated",
 const StyledFindWords = styled.div`
   display: flex;
   flex-wrap: wrap;
+  height: 85vh;
 
 .no {
-
+    height: 3rem;
     width: 5%;
     margin: 0;
     border: .1rem solid white;
     text-align: center;
   p {
+    width: 100%;
+    height: 100%;
     font-weight: bolder;
     font-size: 1.5rem;
     color: white;
+    margin: 0;
   }
+}
+
+.found {
+    width: 100%;
+    height: 100%;
+    font-weight: bolder;
+    font-size: 1.5rem;
+    color: black;
+    background-color: red;
 }
 `;
 
@@ -82,7 +95,7 @@ class FindWords extends React.Component {
    
 let result = [];
 
-   function createNewLettersWithSearchedWord() {
+   function createNewLettersWithSearchedWord(classNameForSearchedWord) {
     const shuffle = (array) => {
       let currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -115,21 +128,18 @@ arrayOfChoosenWords.push(words[Math.floor(Math.random() * lengthOfWords)]);
 // arrayOfChoosenWords.push(words[Math.floor(Math.random() * lengthOfWords)]);
 // arrayOfChoosenWords.push(words[Math.floor(Math.random() * lengthOfWords)]);
 
-
-
 let splitter =  shuffle(splitAllLetters);
 
 
 let insertWord = splitter.splice(Math.floor(Math.random() * splitter.length),
  0, arrayOfChoosenWords.toString());
 
-
 for(let i = 0; i < splitter.length; i++){
   if(splitter[i].length > 1 ) {
     splitter[i] = splitter[i].split('') ;
     let indexOfWord = splitter.indexOf(splitter[i]);
     splitter[indexOfWord].map((letter, index) =>  {
-     return splitter[indexOfWord + index] = ({ letter , searchedWord: 'yes'});
+     return splitter[indexOfWord + index] = ({ letter , searchedWord: classNameForSearchedWord });
       })
   } 
 }
@@ -143,44 +153,47 @@ const all = splitter.map(letter => {
 all.map(letter => result.push(letter));
 }
 
-createNewLettersWithSearchedWord();
-createNewLettersWithSearchedWord();
-createNewLettersWithSearchedWord();
-createNewLettersWithSearchedWord();
-createNewLettersWithSearchedWord();
+createNewLettersWithSearchedWord('wordOne');
+createNewLettersWithSearchedWord('wordTwo');
+createNewLettersWithSearchedWord('wordThree');
+createNewLettersWithSearchedWord('wordFour');
+createNewLettersWithSearchedWord('wordFive');
 
 console.log(result)
 
 this.setState({
   letters: result
 })
-
-// works only for one Word (to insert in existing array(which is the state letter))
-// easiest solution probably with setInterveral and call function so long all words inserted
-// now add OnClick for all letters with searchWord with yes and try to add more words at once 
-// make objects now to strings again and call only first sequence ([0])
-
-// probably better to delete objects and make only array where first value is letter and 
-// and second value is searchWord true or false
-// if true onClick style linethrough if not null
-
-
   };
 
   foundWord = (e) => {
-    console.log(e.target)
-  }
+    // document.getElementByClassName(`.${e.target.className}`).className.add("found");
+    // // e.target.classList.add('found');
+    const changeClassNameOfFoundWord = this.state.letters.map(letter => {
+      if(letter.searchedWord === e.target.className){
+        letter.searchedWord = 'found'
+      } 
+      return letter;
+    });
+
+    this.setState({
+      letter: changeClassNameOfFoundWord
+    });
+  };
 
   render() {
 
     return (
       <StyledFindWords>
-        {this.state.letters.map(letter => {
+        {this.state.letters.map((letter, index) => {
           return <div
-          className={`no ${letter.searchedWord}`} 
-          onClick={letter.searchedWord === 'no' ? null : this.foundWord}
+          key={index}
+          className="no"
           >
-            <p>{letter.letter}</p>
+            <p
+            className={letter.searchedWord === 'no' ? null : letter.searchedWord} 
+          onClick={letter.searchedWord === 'no' ? null : this.foundWord}>
+          {letter.letter}</p>
           </div>
         })}
         {/* <button onClick={this.start}>Start</button> */}

@@ -48,78 +48,112 @@ img {
   width: 10rem;
   height: 10rem;
 }
+
+.user-won {
+width: 20%;
+height: 40%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+top          : 50%;
+left         : 50%;
+position     : fixed;
+transform    : translate(-50%, -50%);
+background: white;
+}
+
+.off {
+  display: none;
+}
 `;
 
 const shuffle = (array) => {
-  
+
   let copyOfArray = [...array];
-  
+
   let currentIndex = copyOfArray.length, temporaryValue, randomIndex;
-  
+
   while (0 !== currentIndex) {
-    
+
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
-    
+
     temporaryValue = copyOfArray[currentIndex];
     copyOfArray[currentIndex] = copyOfArray[randomIndex];
     copyOfArray[randomIndex] = temporaryValue;
   }
-  
+
   return array;
 };
 
 class Memory extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       pictures: [],
       firstPickedPicture: '',
       userFoundAllPictures: false,
     }
   }
-  
+
   componentDidMount = () => {
-    const pictures = [{back: 'https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
-    {back: 'https://images.pexels.com/photos/1827212/pexels-photo-1827212.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
-    {back: 'https://images.pexels.com/photos/2625782/pexels-photo-2625782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
-    {back: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
-    {back: 'https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
-    {back: 'https://images.pexels.com/photos/1827212/pexels-photo-1827212.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
-    {back: 'https://images.pexels.com/photos/2625782/pexels-photo-2625782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
-    {back: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'}];
+    const pictures = [{
+      back: 'https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+      front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+    {
+      back: 'https://images.pexels.com/photos/1827212/pexels-photo-1827212.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+      front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+    {
+      back: 'https://images.pexels.com/photos/2625782/pexels-photo-2625782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+      front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+    {
+      back: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+      front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+    {
+      back: 'https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+      front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+    {
+      back: 'https://images.pexels.com/photos/1827212/pexels-photo-1827212.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+      front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+    {
+      back: 'https://images.pexels.com/photos/2625782/pexels-photo-2625782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+      front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    },
+    {
+      back: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+      front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+    }];
 
     const mixedPictures = shuffle(pictures);
-    
+
     this.setState({
       pictures: mixedPictures
     });
-    
+
   };
-  
+
   safeChoosenPicture = (e) => {
-    if(!this.state.firstPickedPicture){
+    if (!this.state.firstPickedPicture) {
       this.setState({
         firstPickedPicture: e.target.src
-      }); 
+      });
     } else {
-      if(this.state.firstPickedPicture === e.target.src){
+      if (this.state.firstPickedPicture === e.target.src) {
         const deleteFoundPicturePair = this.state.pictures.map(picture => {
-          if(picture.back === e.target.src) {
+          if (picture.back === e.target.src) {
             picture.front = 'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
             picture.back = 'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
-          } 
+          }
           return picture;
         });
-        
+
         this.setState({
           pictures: deleteFoundPicturePair,
           firstPickedPicture: '',
@@ -132,53 +166,48 @@ class Memory extends React.Component {
     }
 
     const checkIfAllPitcuresWasFound = this.state.pictures.filter(picture =>
-       picture.front !== 'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+      picture.front !== 'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
 
-       if(!checkIfAllPitcuresWasFound.toString()){
-         this.setState({
-           userFoundAllPictures: true
-         });
-       }
+    if (!checkIfAllPitcuresWasFound.toString()) {
+      this.setState({
+        userFoundAllPictures: true
+      });
+    }
   };
 
   playAgain = () => {
-    
+
     this.setState({
       userFoundAllPictures: false,
     });
 
     this.componentDidMount();
   };
-// make for new if statement between render and return a class which switches between classes of and on !!!
 
   render() {
-    if(this.state.userFoundAllPictures){
-      return (
-        <StyledMemory>
-        <h1>You found all pairs !!!</h1>
-        <button onClick={this.playAgain}>Play again</button>
-        </StyledMemory>
-      )
-    }
-    return ( 
-<StyledMemory>
-{this.state.pictures.map((picture, index) => {
-  return     <div 
-  className="card"
-  key={index}>
-  <div className="front">
-  <img src={picture.front} alt="front"/> 
-  </div>
-  <div className="back" >
-  <img 
-  src={picture.back} 
-  alt="memory"
-  onClick={this.safeChoosenPicture}/>
-  </div>
-</div>
-})}
-</StyledMemory>
-     );
+    return (
+      <StyledMemory>
+        {this.state.pictures.map((picture, index) => {
+          return <div
+            className="card"
+            key={index}>
+            <div className="front">
+              <img src={picture.front} alt="front" />
+            </div>
+            <div className="back" >
+              <img
+                src={picture.back}
+                alt="memory"
+                onClick={this.safeChoosenPicture} />
+            </div>
+          </div>
+        })}
+        <div className={this.state.userFoundAllPictures ? 'user-won' : 'off'}>
+          <h1>You found all pairs !!!</h1>
+          <button onClick={this.playAgain}>Play again</button>
+        </div>
+      </StyledMemory>
+    );
   }
 }
 

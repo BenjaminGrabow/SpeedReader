@@ -1,12 +1,12 @@
 {
-  "name": "webdb-ii-challenge",
+  "name": "speedreader",
   "version": "1.0.0",
-  "description": "Web DB II Module Challenge",
+  "description": "speedreader",
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js"
   },
-  "author": "Lambda School",
+  "author": "Karim Bertacche & Benjamin Grabow",
   "devDependencies": {
     "nodemon": "^1.19.1"
   },

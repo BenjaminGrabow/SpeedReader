@@ -1,14 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const pictures = ['https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-'https://images.pexels.com/photos/1827212/pexels-photo-1827212.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-'https://images.pexels.com/photos/2625782/pexels-photo-2625782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-'https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-'https://images.pexels.com/photos/1827212/pexels-photo-1827212.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-'https://images.pexels.com/photos/2625782/pexels-photo-2625782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'];
+const pictures = [{back: 'https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
+{back: 'https://images.pexels.com/photos/1827212/pexels-photo-1827212.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
+{back: 'https://images.pexels.com/photos/2625782/pexels-photo-2625782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
+{back: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
+{back: 'https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
+{back: 'https://images.pexels.com/photos/1827212/pexels-photo-1827212.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
+{back: 'https://images.pexels.com/photos/2625782/pexels-photo-2625782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'},
+{back: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'}];
 
 
 const StyledMemory = styled.div`
@@ -64,17 +72,24 @@ class Memory extends React.Component {
     this.state = { 
       pictures: pictures,
       firstPickedPicture: '',
+      userFoundAllPictures: false,
      }
   }
 
-  safePicture = (e) => {
+  safeChoosenPicture = (e) => {
     if(!this.state.firstPickedPicture){
      this.setState({
        firstPickedPicture: e.target.src
      }); 
     } else {
       if(this.state.firstPickedPicture === e.target.src){
-        const deleteFoundPicturePair = this.state.pictures.filter(picture => picture !== e.target.src);
+        const deleteFoundPicturePair = this.state.pictures.map(picture => {
+          if(picture.back === e.target.src) {
+           picture.front = 'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
+           picture.back = 'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
+          } 
+          return picture;
+        });
 
         this.setState({
           pictures: deleteFoundPicturePair,
@@ -86,21 +101,40 @@ class Memory extends React.Component {
         });
       }
     }
+
+    const checkIfAllPitcuresWasFound = this.state.pictures.filter(picture =>
+       picture.front !== 'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+
+       if(!checkIfAllPitcuresWasFound.toString()){
+         this.setState({
+           userFoundAllPictures: true
+         });
+       }
   };
 
-  render() { 
+  render() {
+    if(this.state.userFoundAllPictures){
+      return (
+        <StyledMemory>
+        <h1>You found all pairs !!!</h1>
+        <button onClick={this.playAgain}>Play again</button>
+        </StyledMemory>
+      )
+    }
     return ( 
 <StyledMemory>
-{this.state.pictures.map(picture => {
-  return     <div className="card">
+{this.state.pictures.map((picture, index) => {
+  return     <div 
+  className="card"
+  key={index}>
   <div className="front">
-    <p>Yeeeeah</p>
+  <img src={picture.front} alt="front"/> 
   </div>
   <div className="back" >
   <img 
-  src={picture} 
+  src={picture.back} 
   alt="memory"
-  onClick={this.safePicture}/>
+  onClick={this.safeChoosenPicture}/>
   </div>
 </div>
 })}
@@ -108,5 +142,5 @@ class Memory extends React.Component {
      );
   }
 }
- 
+
 export default Memory;

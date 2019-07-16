@@ -219,7 +219,7 @@ playAgain = () => {
 };
 
   render() {
-if(this.state.countFoundWords) {
+if(this.state.countFoundWords === 5) {
   return (
     <StyledFindWords>
     <div className="user-won">

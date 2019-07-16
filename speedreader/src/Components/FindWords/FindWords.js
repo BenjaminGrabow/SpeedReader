@@ -98,15 +98,15 @@ class FindWords extends React.Component {
     let letters = 'abcdefghijklmnopqrstuvwxyz';
 
     const splitAllLetters = letters.split('');
-    // .repeat(7)
+    // // .repeat(7)
 
 
-    this.setState({
-      letters: shuffle(splitAllLetters),
-    });
-  };
+    // this.setState({
+    //   letters: shuffle(splitAllLetters),
+    // });
 
-  start = () => {
+
+ 
 // let copyArray =this.state.letters;
 
 const lengthOfWords = words.length;
@@ -121,11 +121,11 @@ arrayOfChoosenWords.push(words[Math.floor(Math.random() * lengthOfWords)]);
 
 
 
-let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+let splitter =  shuffle(splitAllLetters);
 
 // let words = [ 'goodbye'];
 
-let splitter = alphabet.split('');
+// let splitter = alphabet.split('');
 
 let insertWord = splitter.splice(Math.floor(Math.random() * splitter.length),
  0, arrayOfChoosenWords.toString());
@@ -148,7 +148,7 @@ const all = splitter.map(letter => {
 })
 
 
-console.log(all)
+
 this.setState({
   letters: all
 })
@@ -165,22 +165,22 @@ this.setState({
 
   };
 
+  foundWord = () => {
+    console.log('yeeees')
+  }
+
   render() {
-    if(this.state.letters.letter) {
-      return this.state.letters.map(letter => {
-        return <div className="letters">
-          <p>{letter.letter}</p>
-        </div>
-        })
-    }
+
     return (
       <StyledFindWords>
-        {this.state.letters.letter ? (this.state.letters.map(letter => {
-          return <div className="letters">
+        {this.state.letters.map(letter => {
+          return <div 
+          onClick={letter.searchedWord === 'yes' ? this.foundWord : null}
+          className="letters">
             <p>{letter.letter}</p>
           </div>
-        })) : null }
-        <button onClick={this.start}>Start</button>
+        })}
+        {/* <button onClick={this.start}>Start</button> */}
       </StyledFindWords>
     );
   }

@@ -56,7 +56,7 @@ const StyledFindWords = styled.div`
   display: flex;
   flex-wrap: wrap;
 
-.letters {
+.no {
 
     width: 5%;
     margin: 0;
@@ -79,6 +79,10 @@ class FindWords extends React.Component {
   }
 
   componentDidMount = () => {
+   
+let result = [];
+
+   function createNewLettersWithSearchedWord() {
     const shuffle = (array) => {
       let currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -101,14 +105,6 @@ class FindWords extends React.Component {
     // // .repeat(7)
 
 
-    // this.setState({
-    //   letters: shuffle(splitAllLetters),
-    // });
-
-
- 
-// let copyArray =this.state.letters;
-
 const lengthOfWords = words.length;
 
 // const generateRandomNumber = Math.floor(Math.random() * lengthOfWords);
@@ -123,9 +119,6 @@ arrayOfChoosenWords.push(words[Math.floor(Math.random() * lengthOfWords)]);
 
 let splitter =  shuffle(splitAllLetters);
 
-// let words = [ 'goodbye'];
-
-// let splitter = alphabet.split('');
 
 let insertWord = splitter.splice(Math.floor(Math.random() * splitter.length),
  0, arrayOfChoosenWords.toString());
@@ -147,10 +140,19 @@ const all = splitter.map(letter => {
   } return letter;
 })
 
+all.map(letter => result.push(letter));
+}
 
+createNewLettersWithSearchedWord();
+createNewLettersWithSearchedWord();
+createNewLettersWithSearchedWord();
+createNewLettersWithSearchedWord();
+createNewLettersWithSearchedWord();
+
+console.log(result)
 
 this.setState({
-  letters: all
+  letters: result
 })
 
 // works only for one Word (to insert in existing array(which is the state letter))
@@ -165,8 +167,8 @@ this.setState({
 
   };
 
-  foundWord = () => {
-    console.log('yeeees')
+  foundWord = (e) => {
+    console.log(e.target)
   }
 
   render() {
@@ -174,9 +176,10 @@ this.setState({
     return (
       <StyledFindWords>
         {this.state.letters.map(letter => {
-          return <div 
-          onClick={letter.searchedWord === 'yes' ? this.foundWord : null}
-          className="letters">
+          return <div
+          className={`no ${letter.searchedWord}`} 
+          onClick={letter.searchedWord === 'no' ? null : this.foundWord}
+          >
             <p>{letter.letter}</p>
           </div>
         })}

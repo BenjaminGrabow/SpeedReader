@@ -68,7 +68,9 @@ p {
 .search-words {
   display: flex;
   flex-wrap: wrap;
-}
+  justify-content: center;
+  align-items: center;
+  }
 
 .no {
     height: 3rem;
@@ -96,12 +98,13 @@ p {
 }
 
 .user-won {
-  display: fixed;
-  top: 0;
-  left: 0;
-  transform: translate(-50%, -50%);
-  height: 30%;
-  width: 30%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 `;
 
@@ -120,7 +123,7 @@ class FindWords extends React.Component {
 let result = [];
 let searchedWords = [];
 
-   function createNewLettersWithSearchedWord(classNameForSearchedWord) {
+const createNewLettersWithSearchedWord = classNameForSearchedWord => {
     const shuffle = (array) => {
       let currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -161,7 +164,9 @@ splitter.splice(Math.floor(Math.random() * splitter.length),
 for(let i = 0; i < splitter.length; i++){
   if(splitter[i].length > 1 ) {
     splitter[i] = splitter[i].split('') ;
+
     let indexOfWord = splitter.indexOf(splitter[i]);
+
     splitter[indexOfWord].map((letter, index) =>  {
      return splitter[indexOfWord + index] = ({ letter , searchedWord: classNameForSearchedWord });
       })
@@ -177,11 +182,11 @@ const all = splitter.map(letter => {
 all.map(letter => result.push(letter));
 }
 
-createNewLettersWithSearchedWord('wordOne');
-createNewLettersWithSearchedWord('wordTwo');
-createNewLettersWithSearchedWord('wordThree');
-createNewLettersWithSearchedWord('wordFour');
-createNewLettersWithSearchedWord('wordFive');
+createNewLettersWithSearchedWord('searchedWordOne');
+createNewLettersWithSearchedWord('searchedWordTwo');
+createNewLettersWithSearchedWord('searchedWordThree');
+createNewLettersWithSearchedWord('searchedWordFour');
+createNewLettersWithSearchedWord('searchedWordFive');
 
 this.setState({
   letters: result,
@@ -206,16 +211,22 @@ this.setState({
   };
 
 playAgain = () => {
+ this.setState({
+   countFoundWords: 0
+ });
 
-}
+ this.componentDidMount();
+};
 
   render() {
-if(this.state.countFoundWords === 5) {
+if(this.state.countFoundWords) {
   return (
+    <StyledFindWords>
     <div className="user-won">
       <h1>You found All words !!!</h1>
  <button onClick={this.playAgain}>Start</button>
     </div>
+    </StyledFindWords>
   )
 }
     return (

@@ -13,11 +13,11 @@ align-items: center;
   position: absolute;
   transform-style: preserve-3d;
   transition: all 1s ease;
-  width: 100%;
-  height: 100%;
-  width: 10rem;
-  height: 10rem;
+  width: 15rem;
+  height: 15rem;
   position: relative;
+  margin: 1.5rem;
+
 
 &:hover {
   transform: rotateY(180deg);
@@ -45,8 +45,8 @@ box-shadow: 5px 5px 4px 5px white;
 }
 
 img {
-  width: 10rem;
-  height: 10rem;
+  width: 15rem;
+  height: 15rem;
 }
 
 .user-won {
@@ -98,38 +98,79 @@ class Memory extends React.Component {
   }
 
   componentDidMount = () => {
-    const pictures = [{
-      back: 'https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    },
-    {
-      back: 'https://images.pexels.com/photos/1827212/pexels-photo-1827212.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    },
-    {
-      back: 'https://images.pexels.com/photos/2625782/pexels-photo-2625782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    },
-    {
-      back: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    },
-    {
-      back: 'https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    },
-    {
-      back: 'https://images.pexels.com/photos/1827212/pexels-photo-1827212.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    },
-    {
-      back: 'https://images.pexels.com/photos/2625782/pexels-photo-2625782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    },
-    {
-      back: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-      front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-    }];
+    const pictures = [
+      {
+        back: 'https://images.pexels.com/photos/677974/pexels-photo-677974.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      },
+      {
+        back: 'https://images.pexels.com/photos/34106/zebra-wild-animal-africa-stripes.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      },
+      {
+        back: 'https://images.pexels.com/photos/52509/penguins-emperor-antarctic-life-52509.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      },
+      {
+        back: 'https://images.pexels.com/photos/39571/gorilla-silverback-animal-silvery-grey-39571.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      },
+      {
+        back: 'https://images.pexels.com/photos/60506/indian-elephant-elephant-jumbo-strongest-60506.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      },
+      {
+        back: 'https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      },
+      {
+        back: 'https://images.pexels.com/photos/1827212/pexels-photo-1827212.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      },
+      {
+        back: 'https://images.pexels.com/photos/34106/zebra-wild-animal-africa-stripes.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      },
+      {
+        back: 'https://images.pexels.com/photos/2625782/pexels-photo-2625782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      },
+      {
+        back: 'https://images.pexels.com/photos/677974/pexels-photo-677974.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      },
+      {
+        back: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      },
+      {
+        back: 'https://images.pexels.com/photos/39571/gorilla-silverback-animal-silvery-grey-39571.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      },
+      {
+        back: 'https://images.pexels.com/photos/52509/penguins-emperor-antarctic-life-52509.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      },
+      {
+        back: 'https://images.pexels.com/photos/60506/indian-elephant-elephant-jumbo-strongest-60506.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      },
+      {
+        back: 'https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      },
+      {
+        back: 'https://images.pexels.com/photos/1827212/pexels-photo-1827212.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      },
+      {
+        back: 'https://images.pexels.com/photos/2625782/pexels-photo-2625782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      },
+      {
+        back: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+      }];
 
     const mixedPictures = shuffle(pictures);
 

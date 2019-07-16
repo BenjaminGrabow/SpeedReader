@@ -88,6 +88,7 @@ class FindWords extends React.Component {
     super(props);
     this.state = {
       letters: [],
+      countFoundWords: 0,
     }
   }
 
@@ -176,8 +177,11 @@ this.setState({
       return letter;
     });
 
+    let oneCountMore = this.state.countFoundWords;
+
     this.setState({
-      letter: changeClassNameOfFoundWord
+      letter: changeClassNameOfFoundWord,
+      countFoundWords: ++oneCountMore,
     });
   };
 
@@ -192,7 +196,7 @@ this.setState({
           >
             <p
             className={letter.searchedWord === 'no' ? null : letter.searchedWord} 
-          onClick={letter.searchedWord === 'no' ? null : this.foundWord}>
+          onClick={letter.searchedWord === 'no' || letter.searchedWord === 'found' ? null : this.foundWord}>
           {letter.letter}</p>
           </div>
         })}

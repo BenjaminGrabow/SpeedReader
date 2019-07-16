@@ -94,6 +94,15 @@ p {
     color: black;
     background-color: red;
 }
+
+.user-won {
+  display: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  height: 30%;
+  width: 30%;
+}
 `;
 
 class FindWords extends React.Component {
@@ -194,12 +203,21 @@ this.setState({
       letter: changeClassNameOfFoundWord,
       countFoundWords: ++oneCountMore,
     });
-
-    console.log(this.state.searchedWords)
   };
 
-  render() {
+playAgain = () => {
 
+}
+
+  render() {
+if(this.state.countFoundWords === 5) {
+  return (
+    <div className="user-won">
+      <h1>You found All words !!!</h1>
+ <button onClick={this.playAgain}>Start</button>
+    </div>
+  )
+}
     return (
       <StyledFindWords>
         <div className="words-to-find">
@@ -217,7 +235,6 @@ this.setState({
           {letter.letter}</p>
           </div>
         })}
-        {/* <button onClick={this.start}>Start</button> */}
         </div>
       </StyledFindWords>
     );

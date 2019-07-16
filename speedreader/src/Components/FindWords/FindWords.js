@@ -158,6 +158,10 @@ this.setState({
 // now add OnClick for all letters with searchWord with yes and try to add more words at once 
 // make objects now to strings again and call only first sequence ([0])
 
+// probably better to delete objects and make only array where first value is letter and 
+// and second value is searchWord true or false
+// if true onClick style linethrough if not null
+
 
   };
 

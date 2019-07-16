@@ -53,9 +53,22 @@ const words = ["underheated",
   "overclassification"];
 
 const StyledFindWords = styled.div`
+
+.words-to-find {
+display: flex;
+width: 100%;
+justify-content: space-around;
+
+p {
+  color: white;
+  font-size: 1.5rem;
+}
+}
+
+.search-words {
   display: flex;
   flex-wrap: wrap;
-  height: 85vh;
+}
 
 .no {
     height: 3rem;
@@ -89,12 +102,14 @@ class FindWords extends React.Component {
     this.state = {
       letters: [],
       countFoundWords: 0,
+      searchedWords: [],
     }
   }
 
   componentDidMount = () => {
    
 let result = [];
+let searchedWords = [];
 
    function createNewLettersWithSearchedWord(classNameForSearchedWord) {
     const shuffle = (array) => {
@@ -113,7 +128,7 @@ let result = [];
       return array;
     };
 
-    let letters = 'abcdefghijklmnopqrstuvwxyz';
+    let letters = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnop';
 
     const splitAllLetters = letters.split('');
     // // .repeat(7)
@@ -123,17 +138,16 @@ const lengthOfWords = words.length;
 
 // const generateRandomNumber = Math.floor(Math.random() * lengthOfWords);
 
-const arrayOfChoosenWords = [];
+const arrayOfChoosenWord = [];
 
-arrayOfChoosenWords.push(words[Math.floor(Math.random() * lengthOfWords)]);
-// arrayOfChoosenWords.push(words[Math.floor(Math.random() * lengthOfWords)]);
-// arrayOfChoosenWords.push(words[Math.floor(Math.random() * lengthOfWords)]);
+arrayOfChoosenWord.push(words[Math.floor(Math.random() * lengthOfWords)]);
+
+const pushChoosenWordToSearchedWordVar = searchedWords.push(arrayOfChoosenWord[0]);
 
 let splitter =  shuffle(splitAllLetters);
 
-
-let insertWord = splitter.splice(Math.floor(Math.random() * splitter.length),
- 0, arrayOfChoosenWords.toString());
+splitter.splice(Math.floor(Math.random() * splitter.length),
+ 0, arrayOfChoosenWord.toString());
 
 for(let i = 0; i < splitter.length; i++){
   if(splitter[i].length > 1 ) {
@@ -160,16 +174,13 @@ createNewLettersWithSearchedWord('wordThree');
 createNewLettersWithSearchedWord('wordFour');
 createNewLettersWithSearchedWord('wordFive');
 
-console.log(result)
-
 this.setState({
-  letters: result
-})
+  letters: result,
+  searchedWords: searchedWords
+});
   };
 
   foundWord = (e) => {
-    // document.getElementByClassName(`.${e.target.className}`).className.add("found");
-    // // e.target.classList.add('found');
     const changeClassNameOfFoundWord = this.state.letters.map(letter => {
       if(letter.searchedWord === e.target.className){
         letter.searchedWord = 'found'
@@ -183,12 +194,18 @@ this.setState({
       letter: changeClassNameOfFoundWord,
       countFoundWords: ++oneCountMore,
     });
+
+    console.log(this.state.searchedWords)
   };
 
   render() {
 
     return (
       <StyledFindWords>
+        <div className="words-to-find">
+        {this.state.searchedWords.map(searchedWord => <p>{searchedWord}</p>)}
+        </div>
+        <div className="search-words">
         {this.state.letters.map((letter, index) => {
           return <div
           key={index}
@@ -201,6 +218,7 @@ this.setState({
           </div>
         })}
         {/* <button onClick={this.start}>Start</button> */}
+        </div>
       </StyledFindWords>
     );
   }

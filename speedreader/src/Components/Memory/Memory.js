@@ -66,6 +66,16 @@ background: white;
 .off {
   display: none;
 }
+
+.game-start {position: absolute;
+  transform-style: preserve-3d;
+  transition: all 1s ease;
+  width: 15rem;
+  height: 15rem;
+  position: relative;
+  margin: 1.5rem;
+  transform: rotateY(180deg);
+}
 `;
 
 const shuffle = (array) => {
@@ -94,6 +104,7 @@ class Memory extends React.Component {
       pictures: [],
       firstPickedPicture: '',
       userFoundAllPictures: false,
+      isGameStarting: true,
     }
   }
 
@@ -178,6 +189,13 @@ class Memory extends React.Component {
       pictures: mixedPictures
     });
 
+    if(this.state.isGameStarting){
+      setTimeout(() => {
+        this.setState({
+          isGameStarting: false,
+        });
+      },3000)
+    }
   };
 
   safeChoosenPicture = (e) => {
@@ -220,9 +238,14 @@ class Memory extends React.Component {
 
     this.setState({
       userFoundAllPictures: false,
+      isGameStarting: true,
     });
 
-    this.componentDidMount();
+    
+      setTimeout(() => {
+        this.componentDidMount();
+      },3000)
+  
   };
 
   render() {
@@ -230,7 +253,7 @@ class Memory extends React.Component {
       <StyledMemory>
         {this.state.pictures.map((picture, index) => {
           return <div
-            className="card"
+            className={this.state.isGameStarting ? "game-start" : "card"}
             key={index}>
             <div className="front">
               <img src={picture.front} alt="front" />

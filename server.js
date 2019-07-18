@@ -108,5 +108,22 @@ server.get('/memory_game', async (req, res) => {
   }
 });
 
+/// Find_Words SECTION ////
+
+const getAllWords = () => {
+  return db
+    .select('word')
+    .from('find_words');
+};
+
+server.get('/find_words', async (req, res) => {
+  try {
+    const pictures = await getAllWords();
+    res.status(200).json(pictures);
+  } catch (error) {
+    res.status(500).json({ error: 'Cannot retrieve the words !' });
+  }
+});
+
 
 module.exports = server;

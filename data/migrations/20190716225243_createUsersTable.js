@@ -19,5 +19,6 @@ exports.up = function (knex) {
 exports.down = function (knex) {
   return knex.schema
     .dropTableIfExists('texts')
-    .dropTableIfExists('memory_game');
+    .dropTableIfExists('memory_game')
+    .dropTableIfExists('find_words');
 };

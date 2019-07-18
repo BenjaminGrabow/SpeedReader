@@ -40,13 +40,21 @@ export const DELETE_TEXT = 'DELETE_TEXT';
 //   };
 
 // dispatch({ type: ADD_TEXT, textFromInput: text, name: textName });
-export const addText = (textName, text) => dispatch() {
-  axios.post('http://localhost:3500', newText)
+export const addText = (textName, text) => dispatch => {
+
+  const newText = {
+    text: text,
+    textname: textName
+  };
+
+  axios.post('http://localhost:3500/texts', newText)
   .then(res => {
-    return axios.get('http://localhost:3500')
+    
+    return axios.get('http://localhost:3500/texts')
     .then(res => {
-    })
-  })
+      dispatch({ type: ADD_TEXT, addedText: res.data });
+    });
+  });
 };
 
 export const chooseThisText = (textName) => {

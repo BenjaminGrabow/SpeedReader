@@ -6,6 +6,7 @@ const server = express();
 
 server.use(express.json());
 
+///// TEXT SECTION ///
 const getAllTexts = () => {
   return db('texts');
 };
@@ -89,4 +90,9 @@ server.delete('/texts/:id', async (req, res) => {
   }
 });
 
+/// MEMORYGAME SECTION ////
+
+const getAllTexts = () => {
+  return db.select('front_picture', 'back_picture')('memory_game');
+};
 module.exports = server;

@@ -4,10 +4,10 @@ exports.up = function (knex) {
     table.text('text', 10000).notNullable();
     table.text('name').notNullable()
   })
-    .createTable('memoryGame', table => {
+    .createTable('memory_game', table => {
       table.increments();
-      table.text('frontPicture', 100).notNullable();
-      table.text('backPicture', 100).notNullable();
+      table.text('front_picture', 100).notNullable();
+      table.text('back_picture', 100).notNullable();
     })
 };
 
@@ -15,5 +15,5 @@ exports.up = function (knex) {
 exports.down = function (knex) {
   return knex.schema
     .dropTableIfExists('texts')
-    .dropTableIfExists('memoryGame');
+    .dropTableIfExists('memory_game');
 };

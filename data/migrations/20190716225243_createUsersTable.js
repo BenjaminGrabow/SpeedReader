@@ -9,6 +9,10 @@ exports.up = function (knex) {
       table.text('front_picture', 100).notNullable();
       table.text('back_picture', 100).notNullable();
     })
+    .createTable('find_words', table => {
+      table.increments();
+      table.text('word', 50).notNullable();
+    })
 };
 
 

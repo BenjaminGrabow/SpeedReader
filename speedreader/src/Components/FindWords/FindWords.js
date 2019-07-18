@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-const words = ["underheated",
+const words = [
   "underheating",
   "underheats",
   "underhonest",
@@ -51,7 +50,6 @@ const words = ["underheated",
   "overclass",
   "overclasses",
   "overclassification"];
-
 const StyledFindWords = styled.div`
 
 .words-to-find {

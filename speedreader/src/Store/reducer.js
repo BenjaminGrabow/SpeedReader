@@ -11,11 +11,11 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case types.ADD_TEXT:
-      const copyOfTexts = action.addedText;
+      const copyOfAddedText = action.addedText;
 
-      copyOfTexts.map(text => text.text = text.text.split(' '));
+      copyOfAddedText.map(text => text.text = text.text.split(' '));
       
-      return { ...state, savedTexts: copyOfTexts };
+      return { ...state, savedTexts: copyOfAddedText };
 
     case types.CHOOSE_THIS_TEXT:
       const findText = state.savedTexts.filter(texts => texts.name[0] === action.name);
@@ -41,9 +41,11 @@ const reducer = (state = initialState, action) => {
       return { ...state, settings: false };
 
     case types.DELETE_TEXT:
-      const filterText = state.savedTexts.filter(text => text.name[0] !== action.textName[0]);
-
-      return { ...state, savedTexts: filterText };
+        const copyOfDeletedText = action.deletedText;
+debugger
+        copyOfDeletedText.map(text => text.text = text.text.split(' '));
+debugger
+      return { ...state, savedTexts: copyOfDeletedText };
 
     default: return state;
   }

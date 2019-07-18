@@ -62,7 +62,7 @@ export const deleteText = (id) => dispatch => {
     return axios.get(adress)
     .then(res => {
 
-      dispatch({ type: DELETE_TEXT, deleteText: res.data });
+      dispatch({ type: DELETE_TEXT, deletedText: res.data });
     });
   })
   .catch(err => {

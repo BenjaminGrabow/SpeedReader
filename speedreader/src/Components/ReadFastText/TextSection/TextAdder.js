@@ -85,7 +85,8 @@ this.setState({
 };
 
   addTextToRedux = () => {
-    this.props.addText(this.state.name, this.state.text.split(' '));
+    // this.props.addText(this.state.name, this.state.text.split(' '));
+    this.props.addText(this.state.name, this.state.text);
 
     this.setState({
       text: '',
@@ -103,8 +104,7 @@ this.setState({
       <StyledTextAdder>
      { this.props.savedTexts.toString() ?
       (<div className="all-texts">
-      {this.props.savedTexts.map(item => 
-        item.name.map((text, index) => {
+      {this.props.savedTexts.map((item, index) => {
          return <div
          key={index} 
          className="text"> 
@@ -115,10 +115,10 @@ this.setState({
           </div>
          <p
           onClick={() => this.chooseThisText(item.name)}>
-         {text}
+         {item.text}
         </p>
         </div>
-        }))}
+       })}
         </div>
         ) : null
     } 

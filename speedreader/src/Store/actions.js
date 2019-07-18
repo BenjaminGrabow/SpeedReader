@@ -44,16 +44,20 @@ export const addText = (textName, text) => dispatch => {
 
   const newText = {
     text: text,
-    textname: textName
+    name: textName
   };
-
+debugger
   axios.post('http://localhost:3500/texts', newText)
   .then(res => {
-    
+    debugger
     return axios.get('http://localhost:3500/texts')
     .then(res => {
+      debugger
       dispatch({ type: ADD_TEXT, addedText: res.data });
     });
+  })
+  .catch(err => {
+    debugger
   });
 };
 

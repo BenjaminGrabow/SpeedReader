@@ -1,8 +1,7 @@
 import React from 'react';
 import StyledTextAdder from './StyledTextAdder';
 import { connect } from 'react-redux';
-import { addText, chooseThisText, deleteText } from '../../../Store/actions';
-import axios from 'axios';
+import { fetchTexts, addText, chooseThisText, deleteText } from '../../../Store/actions';
 
 class TextAdder extends React.Component {
   constructor(props) {
@@ -12,6 +11,10 @@ class TextAdder extends React.Component {
       name: '',
      }
   }
+
+  componentDidMount = () => {
+   this.props.fetchTexts();
+  };
 
   changeHandler = (e) => {
 this.setState({
@@ -76,4 +79,4 @@ const mapStateToProps = state => {
   };
 };
  
-export default connect(mapStateToProps, { addText, chooseThisText, deleteText })(TextAdder);
+export default connect(mapStateToProps, { fetchTexts, addText, chooseThisText, deleteText })(TextAdder);

@@ -39,7 +39,7 @@ class TextSection extends React.Component {
     
 
     const increment = () => {
-      if (this.props.currentText[i] !== this.props.currentText[this.props.currentText.length]) {
+      if (this.props.currentText[globalIndexOfCurrentWord] !== this.props.currentText[this.props.currentText.length]) {
         document.querySelector('.text').textContent = this.props.currentText[globalIndexOfCurrentWord];
         globalIndexOfCurrentWord += 1;
 

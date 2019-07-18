@@ -9,55 +9,25 @@ export const CLOSE_SETTINGS = 'CLOSE_SETTINGS';
 export const OPEN_SETTINGS = 'OPEN_SETTINGS';
 export const DELETE_TEXT = 'DELETE_TEXT';
 
-// export const add = (owner, title, type, description,
-//   price, availability, brand, model, imgURL,
-//   renter) => (dispatch) => {
-//     const numOwner = Number(owner);
+const adress = 'http://localhost:3500/texts';
 
-//     const numPrice = Number(price);
-
-//     const numRenter = Number(renter)
-
-//     const newItem = {
-//       owner: numOwner,
-//       title: title,
-//       type: type,
-//       description: description,
-//       price: numPrice,
-//       availability: availability,
-//       brand: brand,
-//       model: model,
-//       imgURL: imgURL,
-//       renter: numRenter,
-//     };
-
-//     axiosWithAuth().post('https://usemytechstuffapp.herokuapp.com/api/items', newItem)
-//       .then(res => {
-//         dispatch({ type: ADD, payload: res.data.item })
-//       })
-//       .catch(err => {
-//       });
-//   };
-
-// dispatch({ type: ADD_TEXT, textFromInput: text, name: textName });
 export const addText = (textName, text) => dispatch => {
-
   const newText = {
     text: text,
     name: textName
   };
-debugger
-  axios.post('http://localhost:3500/texts', newText)
+
+  axios.post(adress, newText)
   .then(res => {
-    debugger
-    return axios.get('http://localhost:3500/texts')
+
+    return axios.get(adress)
     .then(res => {
-      debugger
+
       dispatch({ type: ADD_TEXT, addedText: res.data });
     });
   })
   .catch(err => {
-    debugger
+   debugger
   });
 };
 
@@ -85,6 +55,17 @@ export const closeSettings = () => {
  return { type: CLOSE_SETTINGS };
 };
 
-export const deleteText = (textName) => {
-  return { type: DELETE_TEXT, textName: textName };
+export const deleteText = (id) => dispatch => {
+  axios.delete(`${adress}/${id}`)
+  .then(res => {
+
+    return axios.get(adress)
+    .then(res => {
+
+      dispatch({ type: DELETE_TEXT, deleteText: res.data });
+    });
+  })
+  .catch(err => {
+    debugger
+  }); 
 }

@@ -11,10 +11,9 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case types.ADD_TEXT:
-      // return { ...state, savedTexts: [...state.savedTexts, { text: action.textFromInput, name: [action.name] }] };
-      const who = action.addedText.map(text => text.text = text.text.split(' '));
-      debugger
-      return { ...state, savedTexts: action.addedText };
+      const splitTheText = action.addedText.map(text => text.text = text.text.split(' '));
+      
+      return { ...state, savedTexts: splitTheText };
 
     case types.CHOOSE_THIS_TEXT:
       const findText = state.savedTexts.filter(texts => texts.name[0] === action.name);

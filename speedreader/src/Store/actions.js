@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+export const FETCH_TEXTS = 'FETCH_TEXTS';
 export const ADD_TEXT = 'ADD_TEXT';
 export const CHOOSE_THIS_TEXT = 'CHOOSE_THIS_TEXT';
 export const MAKE_PAUSE = 'MAKE_PAUSE';
@@ -10,6 +11,19 @@ export const OPEN_SETTINGS = 'OPEN_SETTINGS';
 export const DELETE_TEXT = 'DELETE_TEXT';
 
 const adress = 'http://localhost:3500/texts';
+
+
+export const fetchTexts = () => dispatch => {
+    axios.get(adress)
+    .then(res => {
+
+      dispatch({ type: FETCH_TEXTS, texts: res.data });
+    })
+  .catch(err => {
+   debugger
+  });
+};
+
 
 export const addText = (textName, text) => dispatch => {
   const newText = {

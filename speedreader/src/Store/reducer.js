@@ -42,9 +42,9 @@ const reducer = (state = initialState, action) => {
 
     case types.DELETE_TEXT:
         const copyOfDeletedText = action.deletedText;
-debugger
+
         copyOfDeletedText.map(text => text.text = text.text.split(' '));
-debugger
+
       return { ...state, savedTexts: copyOfDeletedText };
 
     default: return state;

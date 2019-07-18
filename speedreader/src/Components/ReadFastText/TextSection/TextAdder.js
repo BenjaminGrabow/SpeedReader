@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addText, chooseThisText, deleteText } from '../../../Store/actions';
+import axios from 'axios';
 import styled from 'styled-components';
 
 const StyledTextAdder = styled.div`

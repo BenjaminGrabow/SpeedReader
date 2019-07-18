@@ -30,7 +30,7 @@ const deleteTextById = (id) => {
 
 server.get('/texts', async (req, res) => {
   try {
-    const texts = await db('texts');
+    const texts = await getAllTexts('texts');
     res.status(200).json(texts);
   } catch (error) {
     res.status(500).json({ error: 'Cannot retrieve the texts' });

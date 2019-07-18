@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const ADD_TEXT = 'ADD_TEXT';
 export const CHOOSE_THIS_TEXT = 'CHOOSE_THIS_TEXT';
 export const MAKE_PAUSE = 'MAKE_PAUSE';
@@ -7,8 +9,44 @@ export const CLOSE_SETTINGS = 'CLOSE_SETTINGS';
 export const OPEN_SETTINGS = 'OPEN_SETTINGS';
 export const DELETE_TEXT = 'DELETE_TEXT';
 
-export const addText = (textName, text) => {
-  return { type: ADD_TEXT, textFromInput: text, name: textName };
+// export const add = (owner, title, type, description,
+//   price, availability, brand, model, imgURL,
+//   renter) => (dispatch) => {
+//     const numOwner = Number(owner);
+
+//     const numPrice = Number(price);
+
+//     const numRenter = Number(renter)
+
+//     const newItem = {
+//       owner: numOwner,
+//       title: title,
+//       type: type,
+//       description: description,
+//       price: numPrice,
+//       availability: availability,
+//       brand: brand,
+//       model: model,
+//       imgURL: imgURL,
+//       renter: numRenter,
+//     };
+
+//     axiosWithAuth().post('https://usemytechstuffapp.herokuapp.com/api/items', newItem)
+//       .then(res => {
+//         dispatch({ type: ADD, payload: res.data.item })
+//       })
+//       .catch(err => {
+//       });
+//   };
+
+// dispatch({ type: ADD_TEXT, textFromInput: text, name: textName });
+export const addText = (textName, text) => dispatch() {
+  axios.post('http://localhost:3500', newText)
+  .then(res => {
+    return axios.get('http://localhost:3500')
+    .then(res => {
+    })
+  })
 };
 
 export const chooseThisText = (textName) => {

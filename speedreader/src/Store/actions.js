@@ -49,7 +49,7 @@ export const chooseThisText = (textId) => dispatch => {
   axios.get(`${adress}/${textId}`)
   .then(res => {
 
-    dispatch({ type: CHOOSE_THIS_TEXT, text: res.data })
+    dispatch({ type: CHOOSE_THIS_TEXT, fetchedText: res.data })
   })
   .catch(err => {
     debugger

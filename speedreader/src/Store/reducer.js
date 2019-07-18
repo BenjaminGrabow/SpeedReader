@@ -25,9 +25,11 @@ const reducer = (state = initialState, action) => {
       return { ...state, savedTexts: copyOfAddedText };
 
     case types.CHOOSE_THIS_TEXT:
-      const findText = state.savedTexts.filter(texts => texts.name[0] === action.name);
+        const copyOfFetchedText = action.fetchedText;
 
-      return { ...state, addText: false, currentText: findText[0].text };
+        copyOfFetchedText.map(text => text.text = text.text.split(' '));
+
+      return { ...state, addText: false, currentText: copyOfFetchedText };
 
     case types.MAKE_PAUSE:
       const onlyTheTextAfterTheCurrentWord = state.currentText.slice(state.currentText.indexOf(action.currentWord), state.currentText.length);

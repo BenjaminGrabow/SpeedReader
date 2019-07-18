@@ -1,11 +1,11 @@
 exports.up = function(knex) {
-  return knex.schema.createTable('texts', table => {
+  return knex.schema.createTable('memoryGame', table => {
     table.increments();
-    table.text('text', 10000).notNullable();
-    table.text('name').notNullable();
+    table.text('frontPicture', 100).notNullable();
+    table.text('backPicture', 100).notNullable();
   });
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists('texts');
+  return knex.schema.dropTableIfExists('memoryGame');
 };

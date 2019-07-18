@@ -189,12 +189,12 @@ class Memory extends React.Component {
       pictures: mixedPictures
     });
 
-    if(this.state.isGameStarting){
+    if (this.state.isGameStarting) {
       setTimeout(() => {
         this.setState({
           isGameStarting: false,
         });
-      },3000)
+      }, 3000)
     }
   };
 
@@ -241,11 +241,11 @@ class Memory extends React.Component {
       isGameStarting: true,
     });
 
-    
-      setTimeout(() => {
-        this.componentDidMount();
-      },3000)
-  
+
+    setTimeout(() => {
+      this.componentDidMount();
+    }, 3000)
+
   };
 
   render() {

@@ -1,5 +1,7 @@
 import React from 'react';
+import StyledMemory from './StyledMemory';
 import styled from 'styled-components';
+import axios from 'axios';
 
 
 
@@ -108,82 +110,16 @@ class Memory extends React.Component {
     }
   }
 
-  componentDidMount = () => {
-    const pictures = [
-      {
-        back: 'https://images.pexels.com/photos/677974/pexels-photo-677974.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-      },
-      {
-        back: 'https://images.pexels.com/photos/34106/zebra-wild-animal-africa-stripes.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-      },
-      {
-        back: 'https://images.pexels.com/photos/52509/penguins-emperor-antarctic-life-52509.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-      },
-      {
-        back: 'https://images.pexels.com/photos/39571/gorilla-silverback-animal-silvery-grey-39571.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-      },
-      {
-        back: 'https://images.pexels.com/photos/60506/indian-elephant-elephant-jumbo-strongest-60506.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-      },
-      {
-        back: 'https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-      },
-      {
-        back: 'https://images.pexels.com/photos/1827212/pexels-photo-1827212.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-      },
-      {
-        back: 'https://images.pexels.com/photos/34106/zebra-wild-animal-africa-stripes.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-      },
-      {
-        back: 'https://images.pexels.com/photos/2625782/pexels-photo-2625782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-      },
-      {
-        back: 'https://images.pexels.com/photos/677974/pexels-photo-677974.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-      },
-      {
-        back: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-      },
-      {
-        back: 'https://images.pexels.com/photos/39571/gorilla-silverback-animal-silvery-grey-39571.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-      },
-      {
-        back: 'https://images.pexels.com/photos/52509/penguins-emperor-antarctic-life-52509.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-      },
-      {
-        back: 'https://images.pexels.com/photos/60506/indian-elephant-elephant-jumbo-strongest-60506.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-      },
-      {
-        back: 'https://images.pexels.com/photos/1851471/pexels-photo-1851471.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-      },
-      {
-        back: 'https://images.pexels.com/photos/1827212/pexels-photo-1827212.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-      },
-      {
-        back: 'https://images.pexels.com/photos/2625782/pexels-photo-2625782.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-      },
-      {
-        back: 'https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-        front: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500'
-      }];
-
-    const mixedPictures = shuffle(pictures);
+ componentDidMount = () => {
+    axios.get('http://localhost:3500/memory_game')
+    .then(res => {
+      this.setState({
+        pictures: res.data
+      });
+    })
+    .catch(err => console.log(err));
+   
+    const mixedPictures = shuffle(this.state.pictures);
 
     this.setState({
       pictures: mixedPictures
@@ -206,9 +142,9 @@ class Memory extends React.Component {
     } else {
       if (this.state.firstPickedPicture === e.target.src) {
         const deleteFoundPicturePair = this.state.pictures.map(picture => {
-          if (picture.back === e.target.src) {
-            picture.front = 'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
-            picture.back = 'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
+          if (picture.back_picture === e.target.src) {
+            picture.front_picture = 'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
+            picture.back_picture = 'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
           }
           return picture;
         });
@@ -225,7 +161,7 @@ class Memory extends React.Component {
     }
 
     const checkIfAllPitcuresWasFound = this.state.pictures.filter(picture =>
-      picture.front !== 'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+      picture.front_picture !== 'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
 
     if (!checkIfAllPitcuresWasFound.toString()) {
       this.setState({
@@ -256,11 +192,11 @@ class Memory extends React.Component {
             className={this.state.isGameStarting ? "game-start" : "card"}
             key={index}>
             <div className="front">
-              <img src={picture.front} alt="front" />
+              <img src={picture.front_picture} alt="front" />
             </div>
             <div className="back" >
               <img
-                src={picture.back}
+                src={picture.back_picture}
                 alt="memory"
                 onClick={this.safeChoosenPicture} />
             </div>

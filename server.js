@@ -1,10 +1,11 @@
 const express = require('express');
-
+const cors = require('cors');
 const db = require('./data/db.js');
 
 const server = express();
 
 server.use(express.json());
+server.use(cors());
 
 ///// TEXT SECTION ///
 const getAllTexts = () => {
@@ -15,8 +16,8 @@ const getTextById = (id) => {
   return db('texts').where({ id });
 };
 
-const createNewText = ( text ) => {
-  return db('texts').insert( text );
+const createNewText = (text) => {
+  return db('texts').insert(text);
 };
 
 const updateTextById = ({ text, name }, id) => {
@@ -92,7 +93,20 @@ server.delete('/texts/:id', async (req, res) => {
 
 /// MEMORYGAME SECTION ////
 
-const getAllTexts = () => {
-  return db.select('front_picture', 'back_picture')('memory_game');
+const getAllPictures = () => {
+  return db
+    .select('front_picture', 'back_picture')
+    .from('memory_game');
 };
+
+server.get('/memory_game', async (req, res) => {
+  try {
+    const pictures = await getAllPictures();
+    res.status(200).json(pictures);
+  } catch (error) {
+    res.status(500).json({ error: 'Cannot retrieve the pictures !' });
+  }
+});
+
+
 module.exports = server;

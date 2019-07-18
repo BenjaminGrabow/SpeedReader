@@ -29,7 +29,7 @@ const reducer = (state = initialState, action) => {
 
         copyOfFetchedText.map(text => text.text = text.text.split(' '));
 
-      return { ...state, addText: false, currentText: copyOfFetchedText };
+      return { ...state, addText: false, currentText: copyOfFetchedText[0].text };
 
     case types.MAKE_PAUSE:
       const onlyTheTextAfterTheCurrentWord = state.currentText.slice(state.currentText.indexOf(action.currentWord), state.currentText.length);

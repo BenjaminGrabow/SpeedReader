@@ -12,7 +12,6 @@ export const DELETE_TEXT = 'DELETE_TEXT';
 
 const adress = 'http://localhost:3500/texts';
 
-
 export const fetchTexts = () => dispatch => {
     axios.get(adress)
     .then(res => {
@@ -24,6 +23,37 @@ export const fetchTexts = () => dispatch => {
   });
 };
 
+export const chooseThisText = (textId) => dispatch => {
+  axios.get(`${adress}/${textId}`)
+  .then(res => {
+
+    dispatch({ type: CHOOSE_THIS_TEXT, fetchedText: res.data })
+  })
+  .catch(err => {
+    debugger
+  });
+};
+
+export const makePause = (indexOfCurrentWord) => {
+  debugger
+  return { type: MAKE_PAUSE, indexOfCurrentWord: indexOfCurrentWord };
+};
+
+export const showTextAfterPause = () => {
+  return { type: SHOW_TEXT_AFTER_PAUSE };
+};
+
+export const openAddSettings = () => {
+  return { type: OPEN_ADD_SETTINGS };
+};
+
+export const openSettings = () => {
+  return { type: OPEN_SETTINGS };
+};
+
+export const closeSettings = () => {
+  return { type: CLOSE_SETTINGS };
+};
 
 export const addText = (textName, text) => dispatch => {
   const newText = {
@@ -43,37 +73,6 @@ export const addText = (textName, text) => dispatch => {
   .catch(err => {
    debugger
   });
-};
-
-export const chooseThisText = (textId) => dispatch => {
-  axios.get(`${adress}/${textId}`)
-  .then(res => {
-
-    dispatch({ type: CHOOSE_THIS_TEXT, fetchedText: res.data })
-  })
-  .catch(err => {
-    debugger
-  });
-};
-
-export const makePause = (currentWord) => {
- return { type: MAKE_PAUSE, currentWord: currentWord };
-};
-
-export const showTextAfterPause = () => {
- return { type: SHOW_TEXT_AFTER_PAUSE };
-};
-
-export const openAddSettings = () => {
-  return { type: OPEN_ADD_SETTINGS };
-};
-
-export const openSettings = () => {
-  return { type: OPEN_SETTINGS };
-};
- 
-export const closeSettings = () => {
- return { type: CLOSE_SETTINGS };
 };
 
 export const deleteText = (id) => dispatch => {

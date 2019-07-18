@@ -3,7 +3,6 @@ import { closeSettings, openSettings, openAddSettings, makePause, showTextAfterP
 import { connect } from 'react-redux';
 import StyledTextSection from './StyledTextSection';
 
-
 class TextSection extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +15,7 @@ class TextSection extends React.Component {
       textColor: '',
       pause: false,
       pressedPlay: false,
+      indexOfCurrentWord: 0
     }
   }
   
@@ -41,6 +41,10 @@ class TextSection extends React.Component {
       if (this.props.currentText[i] !== this.props.currentText[this.props.currentText.length]) {
         document.querySelector('.text').textContent = this.props.currentText[i];
         i += 1;
+
+        this.setState({
+          indexOfCurrentWord: i
+        });
       }
     };
 
@@ -56,7 +60,7 @@ class TextSection extends React.Component {
   pause = () => {
     const currentWord = document.querySelector('.text').textContent;
     
-    this.props.makePause(currentWord);
+    this.props.makePause(this.state.indexOfCurrentWord);
     
     this.setState({
       pause: true,

@@ -3,6 +3,8 @@ import { closeSettings, openSettings, openAddSettings, makePause, showTextAfterP
 import { connect } from 'react-redux';
 import StyledTextSection from './StyledTextSection';
 
+let globalIndexOfCurrentWord = 0;
+
 class TextSection extends React.Component {
   constructor(props) {
     super(props);
@@ -35,15 +37,14 @@ class TextSection extends React.Component {
     
     const resultForSetInterval = 1000 / wordsPerSecond 
     
-    let i = 0;
 
     const increment = () => {
       if (this.props.currentText[i] !== this.props.currentText[this.props.currentText.length]) {
-        document.querySelector('.text').textContent = this.props.currentText[i];
-        i += 1;
+        document.querySelector('.text').textContent = this.props.currentText[globalIndexOfCurrentWord];
+        globalIndexOfCurrentWord += 1;
 
         this.setState({
-          indexOfCurrentWord: i
+          indexOfCurrentWord: globalIndexOfCurrentWord
         });
       }
     };
@@ -60,12 +61,14 @@ class TextSection extends React.Component {
   pause = () => {
     const currentWord = document.querySelector('.text').textContent;
     
-    this.props.makePause(this.state.indexOfCurrentWord);
+    this.props.makePause(currentWord, this.state.indexOfCurrentWord);
     
     this.setState({
       pause: true,
       pressedPlay: false,
     });
+
+    globalIndexOfCurrentWord = 0;
   };
   
   render() {

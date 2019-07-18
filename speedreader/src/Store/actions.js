@@ -34,9 +34,8 @@ export const chooseThisText = (textId) => dispatch => {
   });
 };
 
-export const makePause = (indexOfCurrentWord) => {
-  debugger
-  return { type: MAKE_PAUSE, indexOfCurrentWord: indexOfCurrentWord };
+export const makePause = (currentWord, indexOfCurrentWord) => {
+  return { type: MAKE_PAUSE, currentWord: currentWord, indexOfCurrentWord: indexOfCurrentWord };
 };
 
 export const showTextAfterPause = () => {

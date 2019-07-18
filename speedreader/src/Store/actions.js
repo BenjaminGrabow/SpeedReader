@@ -17,7 +17,7 @@ export const fetchTexts = () => dispatch => {
     axios.get(adress)
     .then(res => {
 
-      dispatch({ type: FETCH_TEXTS, texts: res.data });
+      dispatch({ type: FETCH_TEXTS, fetchedTexts: res.data });
     })
   .catch(err => {
    debugger
@@ -45,8 +45,15 @@ export const addText = (textName, text) => dispatch => {
   });
 };
 
-export const chooseThisText = (textName) => {
-  return { type: CHOOSE_THIS_TEXT, name: textName };
+export const chooseThisText = (textId) => dispatch => {
+  axios.get(`${adress}/${textId}`)
+  .then(res => {
+
+    dispatch({ type: CHOOSE_THIS_TEXT, text: res.data })
+  })
+  .catch(err => {
+    debugger
+  });
 };
 
 export const makePause = (currentWord) => {

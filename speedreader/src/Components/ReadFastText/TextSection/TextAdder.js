@@ -32,8 +32,8 @@ this.setState({
     });
   };
 
-  chooseThisText = (textName) => {
-    this.props.chooseThisText(textName[0]);
+  chooseThisText = (textId) => {
+    this.props.chooseThisText(textId);
   };
 
   render() {
@@ -52,8 +52,8 @@ this.setState({
           className="fa fa-window-close"/>
           </div>
          <p
-          onClick={() => this.chooseThisText(item.name)}>
-         {item.text}
+          onClick={() => this.chooseThisText(item.id)}>
+         {item.name}
         </p>
         </div>
        })}

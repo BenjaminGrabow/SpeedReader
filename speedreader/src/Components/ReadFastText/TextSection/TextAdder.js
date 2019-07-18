@@ -110,7 +110,7 @@ this.setState({
          className="text"> 
           <div className="close">
           <i 
-          onClick={() => this.props.deleteText(item.name)}
+          onClick={() => this.props.deleteText(item.id)}
           className="fa fa-window-close"/>
           </div>
          <p

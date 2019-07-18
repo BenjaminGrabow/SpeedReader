@@ -176,7 +176,7 @@ if(this.state.countFoundWords === 5) {
     return (
       <StyledFindWords>
         <div className="words-to-find">
-        {this.state.searchedWords.map(searchedWord => <p>{searchedWord}</p>)}
+        {this.state.searchedWords.map((searchedWord, index) => <p key={index}>{searchedWord}</p>)}
         </div>
         <div className="search-words">
         {this.state.letters.map((letter, index) => {

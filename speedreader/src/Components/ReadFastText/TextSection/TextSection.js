@@ -37,7 +37,6 @@ class TextSection extends React.Component {
     
     const resultForSetInterval = 1000 / wordsPerSecond 
     
-
     const increment = () => {
       if (this.props.currentText[globalIndexOfCurrentWord] !== this.props.currentText[this.props.currentText.length]) {
         document.querySelector('.text').textContent = this.props.currentText[globalIndexOfCurrentWord];

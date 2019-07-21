@@ -4,7 +4,16 @@ exports.seed = function(knex) {
       return knex('find_words').insert([
         {id: 1, word: "underheated"},
         {id: 2, word: "underheating"},
-        {id: 3, word: "underheats"}
+        {id: 3, word: "underheats"},
+        {id: 4, word: "underinflated"},
+        {id: 5, word: "defleaing"},
+        {id: 6, word: "metrologic"},
+        {id: 7, word: "overclaims"},
+        {id: 8, word: "inselberg"},
+        {id: 9, word: "overclass"},
+        {id: 10, word: "reputation"},
+        {id: 11, word: "cube"},
+        {id: 12, word: "food"}
       ]);
     });
 };

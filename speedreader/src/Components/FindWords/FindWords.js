@@ -2,56 +2,7 @@ import React from 'react';
 import StyledFindWords from './StyledFindWords';
 import axios from 'axios';
 
-const words = [
-  "underheating",
-  "underheats",
-  "underhonest",
-  "underhung",
-  "underinflated", "metrologic",
-  "metrological",
-  "metrologically",
-  "metrologies",
-  "metrologist",
-  "metrologists", "defleaing",
-  "defleas",
-  "deflect",
-  "deflectable",
-  "deflected",
-  "deflecting",
-  "deflection",
-  "deflectional",
-  "deflections",
-  "deflective",
-  "deflector",
-  "deflectors", "abhorrence",
-  "abhorrences",
-  "abhorrencies",
-  "abhorrency",
-  "abhorrent",
-  "abhorrently",
-  "abhorrer",
-  "abhorrers", "insecurity",
-  "inseem",
-  "inseemed",
-  "inseeming",
-  "inseems",
-  "inselberg",
-  "inselberge",
-  "inselbergs",
-  "inseminate", "overchilled",
-  "overchilling",
-  "overchills",
-  "overcivil",
-  "overcivilised",
-  "overcivilized",
-  "overclad",
-  "overclaim",
-  "overclaimed",
-  "overclaiming",
-  "overclaims",
-  "overclass",
-  "overclasses",
-  "overclassification"];
+let words = '';
 
 class FindWords extends React.Component {
   constructor(props) {
@@ -64,14 +15,22 @@ class FindWords extends React.Component {
   }
 
   componentDidMount = () => {
-   axios.get('http://localhost:3500/find_words')
-   .then(res => {
-     debugger
-   })
+    
+    axios.get('http://localhost:3500/find_words')
+    .then(res => {
+      words = res.data;
+    })
    .catch(err => {
-     debugger
-   })
-let result = [];
+   });
+
+   setTimeout(() => {
+    this.start();
+}, 1000);
+  };
+
+  start = () => {
+
+    let result = [];
 let searchedWords = [];
 
 const createNewLettersWithSearchedWord = classNameForSearchedWord => {
@@ -96,14 +55,13 @@ const createNewLettersWithSearchedWord = classNameForSearchedWord => {
     const splitAllLetters = letters.split('');
     // // .repeat(7)
 
-
 const lengthOfWordsArray = words.length;
 
 // const generateRandomNumber = Math.floor(Math.random() * lengthOfWords);
 
 const arrayOfChoosenWord = [];
 
-const pushRandomWordFromArrayWordsToNewArray = arrayOfChoosenWord.push(words[Math.floor(Math.random() * lengthOfWordsArray)]);
+const pushRandomWordFromArrayWordsToNewArray = arrayOfChoosenWord.push(words[Math.floor(Math.random() * lengthOfWordsArray)].word);
 
 const pushChoosenWordToSearchedWordVar = searchedWords.push(arrayOfChoosenWord[0]);
 
@@ -143,7 +101,7 @@ this.setState({
   letters: result,
   searchedWords: searchedWords
 });
-  };
+  }
 
   foundWord = (e) => {
     const changeClassNameOfFoundWord = this.state.letters.map(letter => {
@@ -179,7 +137,7 @@ if(this.state.countFoundWords === 5) {
     </div>
     </StyledFindWords>
   )
-}
+} 
     return (
       <StyledFindWords>
         <div className="words-to-find">

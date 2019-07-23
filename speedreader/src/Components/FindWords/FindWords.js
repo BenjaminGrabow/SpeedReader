@@ -64,7 +64,13 @@ class FindWords extends React.Component {
   }
 
   componentDidMount = () => {
-   
+   axios.get('http://localhost:3500/find_words')
+   .then(res => {
+     debugger
+   })
+   .catch(err => {
+     debugger
+   })
 let result = [];
 let searchedWords = [];
 

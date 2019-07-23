@@ -118,8 +118,8 @@ const getAllWords = () => {
 
 server.get('/find_words', async (req, res) => {
   try {
-    const pictures = await getAllWords();
-    res.status(200).json(pictures);
+    const words = await getAllWords();
+    res.status(200).json(words);
   } catch (error) {
     res.status(500).json({ error: 'Cannot retrieve the words !' });
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import StyledFindWords from './StyledFindWords';
+import axios from 'axios';
 
 const words = [
   "underheating",

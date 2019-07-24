@@ -1,9 +1,17 @@
 exports.up = function (knex) {
-  return knex.schema.createTable('texts', table => {
-    table.increments();
-    table.text('text', 10000).notNullable();
-    table.text('name').notNullable().unique();
+  return knex.schema.createTable('users', users => {
+    users.increments();
+    users
+      .string('username', 128)
+      .notNullable()
+      .unique();
+    users.string('password', 128).notNullable();
   })
+    .createTable('texts', table => {
+      table.increments();
+      table.text('text', 10000).notNullable();
+      table.text('name').notNullable().unique();
+    })
     .createTable('memory_game', table => {
       table.increments();
       table.text('front_picture', 100).notNullable();
@@ -18,6 +26,7 @@ exports.up = function (knex) {
 
 exports.down = function (knex) {
   return knex.schema
+    .dropTableIfExists('texts')
     .dropTableIfExists('texts')
     .dropTableIfExists('memory_game')
     .dropTableIfExists('find_words');

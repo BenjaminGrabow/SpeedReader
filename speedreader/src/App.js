@@ -11,13 +11,15 @@ import styled from 'styled-components';
 import './App.css';
 
 const StyledDiv = styled.div`
-background-image: linear-gradient(to right, rgba(0,0,0,.5), rgba(0,0,0,.5)),url(${books});
+/* background-image: linear-gradient(to right, rgba(0,0,0,.5), rgba(0,0,0,.5)),url(${books});
 background-position: center;
 background-repeat: no-repeat; 
 background-size: cover;
-height: 100vh;
+height: 100vh; */
 `;
 
+
+// ADD LOCALSTORAGE FOR FREE USERS !!!
 function App() {
   return (
     <StyledDiv>

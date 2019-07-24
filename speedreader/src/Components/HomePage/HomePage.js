@@ -9,8 +9,7 @@ const StyledHomePage = styled.div`
 const HomePage = () => {
   return ( 
   <StyledHomePage>
-  <NavLink to="/login">Login</NavLink>
-  <NavLink to="/register">Register</NavLink> 
+  <NavLink to="/account">Account</NavLink> 
   </StyledHomePage>
   );
 }

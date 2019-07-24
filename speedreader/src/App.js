@@ -1,6 +1,6 @@
 import React from 'react';
 import HomePage from './Components/HomePage/HomePage';
-import LoginPage from './Components/Login/LoginPage';
+import LogAndRegi from './Components/Login/LogAndRegi';
 import PrivateRoute from './Components/Login/PrivateRoute';
 import TextContainer from './Components/ReadFastText/TextContainer/TextContainer';
 import FindWords from './Components/FindWords/FindWords';
@@ -25,7 +25,7 @@ function App() {
   return (
     <StyledDiv>
       <Route exact path="/" component={HomePage} />
-        <Route path="/login" component={LoginPage} />
+        <Route path="/account" component={LogAndRegi} />
         <PrivateRoute path="/protected/text" component={TextContainer} />
         <PrivateRoute path="/protected/find_words" component={FindWords} />
         <PrivateRoute path="/protected/memory" component={Memory} />

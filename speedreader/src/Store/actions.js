@@ -20,8 +20,11 @@ const adress = 'http://localhost:3500/texts';
 export const register = creds => dispatch => {
   return axios.post('http://localhost:3500/register', creds)
     .then(res => {
-      
+      debugger
       dispatch({ type: REGISTER });
+    })
+    .catch(err => {
+      debugger
     })
 };
 

@@ -1,7 +1,6 @@
 import React from 'react';
-import loginPic from './loginPic.jpg';
 import { connect } from 'react-redux'
-import { login } from '../../store/actions';
+import { login } from '../../Store/actions';
 import Loader from 'react-loader-spinner';
 import StyledDiv from './StyledDiv';
 
@@ -34,7 +33,7 @@ class LoginPage extends React.Component {
  
     this.props.login(this.state.credentials)
       .then(() => {
-        this.props.history.push('/protected')
+        this.props.history.push('/protected/text')
       })
   };
 
@@ -43,7 +42,6 @@ class LoginPage extends React.Component {
     return (
       <StyledDiv>
        
-          <img src={loginPic} alt="logo" />
     
        <div className="row">
         <form
@@ -69,12 +67,12 @@ class LoginPage extends React.Component {
         
           <button
             type="submit">
-            {this.props.isLoggingIn ? (<Loader
+            {/* {this.props.isLoggingIn ? (<Loader
               type="ThreeDots"
               color="#1f2a38"
               height="12"
               width="26" />) :
-              (<i className="fa fa-user-plus"></i>)}
+              (<i className="fa fa-user-plus"></i>)} */}
           </button>
         </form>
         </div>
@@ -85,8 +83,8 @@ class LoginPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isLoggingIn: state.loggingIn
+    // isLoggingIn: state.loggingIn
   }
-}
+};
 
 export default connect(mapStateToProps, { login, fetch })(LoginPage);

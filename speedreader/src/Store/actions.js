@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosWithAuth from './axiosWithAuth';
 
 export const LOGIN_START = 'LOGIN_START';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -16,6 +17,14 @@ export const DELETE_TEXT = 'DELETE_TEXT';
 
 const adress = 'http://localhost:3500/texts';
 
+export const register = creds => dispatch => {
+  return axios.post('http://localhost:3500/register', creds)
+    .then(res => {
+      
+      dispatch({ type: REGISTER });
+    })
+};
+
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
 
@@ -32,16 +41,9 @@ export const login = creds => dispatch => {
     });
 };
 
-export const register = creds => dispatch => {
-  return axios.post('http://localhost:3500/register', creds)
-    .then(res => {
-      
-      dispatch({ type: REGISTER });
-    })
-};
 
 export const fetchTexts = () => dispatch => {
-    axios.get(adress)
+  axiosWithAuth().get(adress)
     .then(res => {
 
       dispatch({ type: FETCH_TEXTS, fetchedTexts: res.data });

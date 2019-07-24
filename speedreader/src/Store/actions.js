@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+export const LOGIN_START = 'LOGIN_START';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const REGISTER = 'REGISTER';
 export const FETCH_TEXTS = 'FETCH_TEXTS';
 export const ADD_TEXT = 'ADD_TEXT';
 export const CHOOSE_THIS_TEXT = 'CHOOSE_THIS_TEXT';
@@ -11,6 +15,30 @@ export const OPEN_SETTINGS = 'OPEN_SETTINGS';
 export const DELETE_TEXT = 'DELETE_TEXT';
 
 const adress = 'http://localhost:3500/texts';
+
+export const login = creds => dispatch => {
+  dispatch({ type: LOGIN_START });
+
+  return axios.post('http://localhost:3500/login', creds)
+    .then(res => {
+
+      localStorage.setItem('token', res.data.token);
+      
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data })
+    })
+    .catch(err => {
+      
+      dispatch({ type: LOGIN_FAIL, payload: err.response.data.message });
+    });
+};
+
+export const register = creds => dispatch => {
+  return axios.post('http://localhost:3500/register', creds)
+    .then(res => {
+      
+      dispatch({ type: REGISTER });
+    })
+};
 
 export const fetchTexts = () => dispatch => {
     axios.get(adress)

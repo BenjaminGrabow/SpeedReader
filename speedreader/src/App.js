@@ -18,15 +18,12 @@ background-size: cover;
 height: 100vh;
 `;
 
-// MAKE HEADER WITH PROPS SO ITS FLEXIBLE
-// ADD HEADER TO ALL GAMES
-
 function App() {
   return (
     <StyledDiv>
       <Route exact path="/" component={HomePage} />
         <Route path="/account" component={LogAndRegi} />
-        <PrivateRoute path="/protected/text" component={TextContainer} />
+        <Route path="/text" component={TextContainer} />
         <PrivateRoute path="/protected/find_words" component={FindWords} />
         <PrivateRoute path="/protected/memory" component={Memory} />
     </StyledDiv>

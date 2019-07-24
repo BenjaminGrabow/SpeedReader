@@ -61,7 +61,7 @@ class LogAndRegi extends React.Component {
 
     this.props.login(this.state.credentials)
       .then(() => {
-        this.props.history.push('/protected/text');
+        this.props.history.push('/protected/find_words');
       });
   };
 

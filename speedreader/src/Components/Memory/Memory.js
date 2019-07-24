@@ -1,5 +1,6 @@
 import React from 'react';
 import StyledMemory from './StyledMemory';
+import Header from '../Header/Header';
 import axios from 'axios';
 
 const shuffle = (array) => {
@@ -108,6 +109,8 @@ class Memory extends React.Component {
 
   render() {
     return (
+      <div>
+        <Header/>
       <StyledMemory>
         {this.state.pictures.map((picture, index) => {
           return <div
@@ -129,6 +132,7 @@ class Memory extends React.Component {
           <button onClick={this.playAgain}>Play again</button>
         </div>
       </StyledMemory>
+      </div>
     );
   }
 }

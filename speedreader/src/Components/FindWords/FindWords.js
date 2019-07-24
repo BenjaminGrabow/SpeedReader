@@ -1,5 +1,6 @@
 import React from 'react';
 import StyledFindWords from './StyledFindWords';
+import Header from '../Header/Header';
 import axios from 'axios';
 
 let words = '';
@@ -140,6 +141,7 @@ if(this.state.countFoundWords === 5) {
 } 
     return (
       <StyledFindWords>
+        <Header/>
         <div className="words-to-find">
         {this.state.searchedWords.map((searchedWord, index) => <p key={index}>{searchedWord}</p>)}
         </div>

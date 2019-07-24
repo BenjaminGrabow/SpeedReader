@@ -44,7 +44,7 @@ class LogAndRegi extends React.Component {
   register = e => {
     e.preventDefault();
 
-    if (this.state.credentials.username.length > 5
+    if (this.state.credentials.username.length > 2
       // &&
       // this.state.credentials.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/)
     ) {
@@ -104,7 +104,7 @@ class LogAndRegi extends React.Component {
     if (this.state.login) {
       return (
         <StyledDiv>
-          <button onClick={this.showInput}>Go to Register</button>
+          <button onClick={this.showInput}>Register</button>
           <div className="row">
             <form
               onSubmit={this.login}>

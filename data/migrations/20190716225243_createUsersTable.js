@@ -11,6 +11,13 @@ exports.up = function (knex) {
       table.increments();
       table.text('text', 10000).notNullable();
       table.text('name').notNullable().unique();
+      table
+      .integer("user_id")
+      .unsigned()
+      .notNullable()
+      .unique()
+      .references("id")
+      .inTable("users");
     })
     .createTable('memory_game', table => {
       table.increments();
@@ -26,7 +33,7 @@ exports.up = function (knex) {
 
 exports.down = function (knex) {
   return knex.schema
-    .dropTableIfExists('texts')
+    .dropTableIfExists('users')
     .dropTableIfExists('texts')
     .dropTableIfExists('memory_game')
     .dropTableIfExists('find_words');

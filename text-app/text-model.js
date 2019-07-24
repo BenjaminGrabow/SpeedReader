@@ -2,7 +2,8 @@ const db = require('../data/db.js');
 
 
 const getAllTexts = () => {
-  return db('texts');
+  return db('texts')
+  .innerJoin('users', 'users.id', 'texts.user_id');
 };
 
 const getTextById = (id) => {

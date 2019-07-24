@@ -1,12 +1,5 @@
 const db = require('../data/db.js');
 
-module.exports = {
-  getAllTexts,
-  getTextById,
-  createNewText,
-  updateTextById,
-  deleteTextById
-};
 
 const getAllTexts = () => {
   return db('texts');
@@ -26,4 +19,12 @@ const updateTextById = ({ text, name }, id) => {
 
 const deleteTextById = (id) => {
   return db('texts').where({ id }).del();
+};
+
+module.exports = {
+  getAllTexts,
+  getTextById,
+  createNewText,
+  updateTextById,
+  deleteTextById
 };

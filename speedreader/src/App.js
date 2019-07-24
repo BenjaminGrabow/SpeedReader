@@ -1,5 +1,7 @@
 import React from 'react';
-import Header from './Components/Header/Header';
+import HomePage from './Components/HomePage/HomePage';
+import LoginPage from './Components/Login/LoginPage';
+import PrivateRoute from './Components/Login/PrivateRoute';
 import TextContainer from './Components/ReadFastText/TextContainer/TextContainer';
 import FindWords from './Components/FindWords/FindWords';
 import Memory from './Components/Memory/Memory';
@@ -16,13 +18,17 @@ background-size: cover;
 height: 100vh;
 `;
 
+// MAKE HEADER WITH PROPS SO ITS FLEXIBLE
+// ADD HEADER TO ALL GAMES
+
 function App() {
   return (
     <StyledDiv>
-      <Header/>
-      <Route path="/speed_trainer" component={TextContainer} />
-      <Route path="/find_words" component={FindWords} />
-      <Route path="/memory" component={Memory} />
+      <Route exact path="/" component={HomePage} />
+        <Route path="/login" component={LoginPage} />
+        <PrivateRoute path="/protected/text" component={TextContainer} />
+        <PrivateRoute path="/protected/find_words" component={FindWords} />
+        <PrivateRoute path="/protected/memory" component={Memory} />
     </StyledDiv>
   );
 }

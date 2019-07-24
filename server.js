@@ -14,7 +14,7 @@ server.use(helmet());
 server.use(express.json());
 server.use(cors());
 
-server.use('/auth', authRouter);
+server.use('/', authRouter);
 // server.use('/users', usersRouter);
 server.use('/', textRouter);
 server.use('/', findWordRouter);

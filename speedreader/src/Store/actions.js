@@ -35,7 +35,8 @@ export const login = creds => dispatch => {
     .then(res => {
 
       localStorage.setItem('token', res.data.token);
-      
+      localStorage.setItem('id', res.data.id);
+
       dispatch({ type: LOGIN_SUCCESS, payload: res.data })
     })
     .catch(err => {
@@ -88,9 +89,12 @@ export const closeSettings = () => {
 };
 
 export const addText = (textName, text) => dispatch => {
+  const usersID = localStorage.getItem('id');
+
   const newText = {
     text: text,
-    name: textName
+    name: textName,
+    user_id: usersID
   };
 
   axios.post(adress, newText)

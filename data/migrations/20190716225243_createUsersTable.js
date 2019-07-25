@@ -10,12 +10,11 @@ exports.up = function (knex) {
     .createTable('texts', table => {
       table.increments();
       table.text('text', 10000).notNullable();
-      table.text('name').notNullable().unique();
+      table.text('name').notNullable();
       table
       .integer("user_id")
       .unsigned()
       .notNullable()
-      .unique()
       .references("id")
       .inTable("users");
     })

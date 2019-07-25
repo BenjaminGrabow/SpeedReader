@@ -13,6 +13,7 @@ router.get('/texts', async (req, res) => {
 
 router.get("/texts/:id", async (req, res) => {
   const getText = await Text.getTextById(req.params.id);
+
   try {
     if (getText) {
       res.status(200).json(getText);
@@ -26,8 +27,11 @@ router.get("/texts/:id", async (req, res) => {
 
 // YOU MUST GET THE ID OF THE USER SOMEHOW !!!!!!!!!!!!!!!!!!!!!!!!!!!
 router.post("/texts", async (req, res) => {
+
   const arrayOfId = await Text.createNewText(req.body);
+
   const arrayOfText = await Text.getTextById(arrayOfId[0]);
+
   try {
     if (arrayOfId) {
       res.json(arrayOfText[0]);
@@ -41,7 +45,9 @@ router.post("/texts", async (req, res) => {
 
 router.put("/texts/:id", async (req, res) => {
   const { text, name } = req.body;
+
   const result = await Text.updateTextById({ text, name }, req.params.id);
+
   try {
     if (result) {
       res.status(200).json(result);
@@ -55,6 +61,7 @@ router.put("/texts/:id", async (req, res) => {
 
 router.delete('/texts/:id', async (req, res) => {
   const deleteText = await Text.deleteTextById(req.params.id);
+
   try {
     if (deleteText) {
       res.status(200).json(deleteText);

@@ -25,7 +25,6 @@ router.get("/texts/:id", async (req, res) => {
   }
 });
 
-// YOU MUST GET THE ID OF THE USER SOMEHOW !!!!!!!!!!!!!!!!!!!!!!!!!!!
 router.post("/texts", async (req, res) => {
 
   const arrayOfId = await Text.createNewText(req.body);

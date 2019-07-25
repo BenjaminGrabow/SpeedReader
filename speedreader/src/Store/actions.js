@@ -47,7 +47,9 @@ export const login = creds => dispatch => {
 
 
 export const fetchTexts = () => dispatch => {
-  axiosWithAuth().get(adress)
+  const userID = localStorage.getItem('id');
+
+  axiosWithAuth().get(adress, userID)
     .then(res => {
 
       dispatch({ type: FETCH_TEXTS, fetchedTexts: res.data });
@@ -96,7 +98,7 @@ export const addText = (textName, text) => dispatch => {
     name: textName,
     user_id: usersID
   };
-
+  debugger 
   axios.post(adress, newText)
   .then(res => {
 

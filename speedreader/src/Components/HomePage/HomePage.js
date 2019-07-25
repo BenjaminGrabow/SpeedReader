@@ -58,8 +58,18 @@ img {
 
 `;
 
-const HomePage = () => {
-  return ( 
+class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {  }
+  }
+
+  componentDidMount = () => {
+    localStorage.setItem('id', 1);
+  };
+  
+  render() { 
+    return ( 
   <StyledHomePage>
     <header>
     <h1>SpeedReader</h1>
@@ -77,7 +87,8 @@ const HomePage = () => {
   </div>
   </div>
   </StyledHomePage>
-  );
+     );
+  }
 }
  
 export default HomePage;

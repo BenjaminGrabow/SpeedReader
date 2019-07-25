@@ -13,9 +13,7 @@ class TextAdder extends React.Component {
   }
 
   componentDidMount = () => {
-   this.props.fetchTexts();
-
-   localStorage.setItem('id', 1);
+    this.props.fetchTexts();
   };
 
   changeHandler = (e) => {

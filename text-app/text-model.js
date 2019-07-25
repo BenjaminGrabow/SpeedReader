@@ -1,9 +1,8 @@
 const db = require('../data/db.js');
 
 
-const getAllTexts = () => {
-  return db('texts')
-  .innerJoin('users', 'users.id', 'texts.user_id');
+const getAllTexts = (id) => {
+  return db('texts').where({ user_id: id })
 };
 
 const getTextById = (id) => {

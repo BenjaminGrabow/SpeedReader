@@ -36,18 +36,18 @@ class Memory extends React.Component {
     }
   }
 
- componentDidMount = () => {
+  componentDidMount = () => {
     axios.get('http://localhost:3500/memory_game')
-    .then(res => {
+      .then(res => {
 
-      this.setState({
-        pictures: res.data
+        this.setState({
+          pictures: res.data
+        });
+      })
+      .catch(err => {
+        debugger
       });
-    })
-    .catch(err => {
-      debugger
-    });
-   
+
     const mixedPictures = shuffle(this.state.pictures);
 
     this.setState({
@@ -90,7 +90,9 @@ class Memory extends React.Component {
     }
 
     const checkIfAllPitcuresWasFound = this.state.pictures.filter(picture =>
-      picture.front_picture !== 'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+      picture.front_picture
+      !==
+      'https://images.pexels.com/photos/193821/pexels-photo-193821.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
 
     if (!checkIfAllPitcuresWasFound.toString()) {
       this.setState({
@@ -116,28 +118,33 @@ class Memory extends React.Component {
   render() {
     return (
       <div>
-        <Header/>
-      <StyledMemory>
-        {this.state.pictures.map((picture, index) => {
-          return <div
-            className={this.state.isGameStarting ? "game-start" : "card"}
-            key={index}>
-            <div className="front">
-              <img src={picture.front_picture} alt="front" />
+        <Header />
+        <StyledMemory>
+          {this.state.pictures.map((picture, index) => {
+            return <div
+              className={this.state.isGameStarting
+                ? "game-start" : "card"}
+              key={index}>
+              <div className="front">
+                <img
+                  src={picture.front_picture}
+                  alt="front" />
+              </div>
+              <div className="back" >
+                <img
+                  src={picture.back_picture}
+                  alt="memory"
+                  onClick={this.safeChoosenPicture} />
+              </div>
             </div>
-            <div className="back" >
-              <img
-                src={picture.back_picture}
-                alt="memory"
-                onClick={this.safeChoosenPicture} />
-            </div>
+          })}
+          <div className={this.state.userFoundAllPictures
+            ? 'user-won' : 'off'}>
+            <h1>You found all pairs !!!</h1>
+            <button onClick={this.playAgain}>
+              Play again</button>
           </div>
-        })}
-        <div className={this.state.userFoundAllPictures ? 'user-won' : 'off'}>
-          <h1>You found all pairs !!!</h1>
-          <button onClick={this.playAgain}>Play again</button>
-        </div>
-      </StyledMemory>
+        </StyledMemory>
       </div>
     );
   }

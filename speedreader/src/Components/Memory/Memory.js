@@ -5,17 +5,20 @@ import axios from 'axios';
 
 const shuffle = (array) => {
 
-  let copyOfArray = [...array];
+  let copyOfArray = array;
 
   let currentIndex = copyOfArray.length, temporaryValue, randomIndex;
 
   while (0 !== currentIndex) {
 
     randomIndex = Math.floor(Math.random() * currentIndex);
+
     currentIndex -= 1;
 
     temporaryValue = copyOfArray[currentIndex];
+
     copyOfArray[currentIndex] = copyOfArray[randomIndex];
+
     copyOfArray[randomIndex] = temporaryValue;
   }
 
@@ -36,11 +39,14 @@ class Memory extends React.Component {
  componentDidMount = () => {
     axios.get('http://localhost:3500/memory_game')
     .then(res => {
+
       this.setState({
         pictures: res.data
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      debugger
+    });
    
     const mixedPictures = shuffle(this.state.pictures);
 

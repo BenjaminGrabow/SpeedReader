@@ -8,7 +8,7 @@ width: 100%;
 justify-content: space-around;
 
 p {
-  color: white;
+  color: black;
   font-size: 1.5rem;
 }
 }
@@ -24,14 +24,14 @@ p {
     height: 3rem;
     width: 5%;
     margin: 0;
-    border: .1rem solid white;
+    border: .1rem solid black;
     text-align: center;
   p {
     width: 100%;
     height: 100%;
     font-weight: bolder;
     font-size: 1.5rem;
-    color: white;
+    color: black;
     margin: 0;
   }
 }

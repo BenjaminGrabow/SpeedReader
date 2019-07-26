@@ -30,8 +30,8 @@ class FindWords extends React.Component {
   };
 
   start = () => {
+let result = [];
 
-    let result = [];
 let searchedWords = [];
 
 const createNewLettersWithSearchedWord = classNameForSearchedWord => {

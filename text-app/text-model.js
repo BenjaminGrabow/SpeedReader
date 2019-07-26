@@ -1,8 +1,8 @@
 const db = require('../data/db.js');
 
 
-const getAllTexts = (id) => {
-  return db('texts').where({ user_id: id })
+const getAllTexts = (user_id) => {
+  return db('texts').where({ user_id })
 };
 
 const getTextById = (id) => {

@@ -48,10 +48,10 @@ export const login = creds => dispatch => {
 
 export const fetchTexts = () => dispatch => {
   const userID = localStorage.getItem('id');
-
-  axiosWithAuth().get(adress, userID)
+  debugger
+  axiosWithAuth().get(`${adress}/user/${userID}`)
     .then(res => {
-
+debugger
       dispatch({ type: FETCH_TEXTS, fetchedTexts: res.data });
     })
   .catch(err => {
@@ -98,11 +98,11 @@ export const addText = (textName, text) => dispatch => {
     name: textName,
     user_id: usersID
   };
-  debugger 
+
   axios.post(adress, newText)
   .then(res => {
 
-    return axios.get(adress)
+    return axiosWithAuth().get(`${adress}/user/${usersID}`)
     .then(res => {
 
       dispatch({ type: ADD_TEXT, addedText: res.data });
@@ -114,10 +114,12 @@ export const addText = (textName, text) => dispatch => {
 };
 
 export const deleteText = (id) => dispatch => {
+  const theUserID = localStorage.getItem('id');
+
   axios.delete(`${adress}/${id}`)
   .then(res => {
 
-    return axios.get(adress)
+    return axiosWithAuth().get(`${adress}/user/${theUserID}`)
     .then(res => {
 
       dispatch({ type: DELETE_TEXT, deletedText: res.data });

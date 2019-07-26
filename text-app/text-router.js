@@ -2,10 +2,10 @@ const router = require('express').Router();
 
 const Text = require('./text-model.js');
 
-router.get('/texts', async (req, res) => {
-
+router.get('/texts/user/:id', async (req, res) => {
+  
   try {
-    const texts = await Text.getAllTexts(req.body);
+    const texts = await Text.getAllTexts(req.params.id);
     res.status(200).json(texts);
   } catch (error) {
     res.status(500).json({ error: 'Cannot retrieve the texts' });

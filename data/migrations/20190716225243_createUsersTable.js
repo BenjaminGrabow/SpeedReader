@@ -7,6 +7,21 @@ exports.up = function (knex) {
       .unique();
     users.string('password', 128).notNullable();
   })
+  .createTable('user_preference', user => {
+    user.increments();
+    user.text('photo', 50);
+    user.text('first_name', 50);
+    user.text('last_name', 50);
+    user
+      .integer("user_id")
+      .unsigned()
+      .unique()
+      .notNullable()
+      .references("id")
+      .inTable("users")
+      .onUpdate('CASCADE')
+      .onDelete('CASCADE');
+  })
     .createTable('texts', table => {
       table.increments();
       table.text('text', 10000).notNullable();

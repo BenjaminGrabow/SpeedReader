@@ -14,6 +14,9 @@ export const OPEN_ADD_SETTINGS = 'OPEN_ADD_SETTINGS';
 export const CLOSE_SETTINGS = 'CLOSE_SETTINGS';
 export const OPEN_SETTINGS = 'OPEN_SETTINGS';
 export const DELETE_TEXT = 'DELETE_TEXT';
+export const CHECK_USER_PREFERENCE = 'CHECK_USER_PREFERENCE';
+export const SAFE_USER_PREFERENCE = 'SAFE_USER_PREFERENCE';
+export const UPDATE_USER_PREFERENCE = 'UPDATE_USER_PREFERENCE';
 
 const adress = 'http://localhost:3500/texts';
 

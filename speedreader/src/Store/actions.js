@@ -38,7 +38,7 @@ export const login = creds => dispatch => {
     .then(res => {
 
       localStorage.setItem('token', res.data.token);
-      localStorage.setItem('id', res.data.id);
+      localStorage.setItem('user_id', res.data.id);
 
       dispatch({ type: LOGIN_SUCCESS, payload: res.data })
     })
@@ -132,3 +132,69 @@ export const deleteText = (id) => dispatch => {
     debugger
   }); 
 }
+
+export const checkUserPreference = () => dispatch => {
+
+  const userId = localStorage.getItem('user_id');
+
+  return axios.get(`${adress}user/${userId}`)
+    .then(res => {
+
+      if (res.data.toString()) {
+        dispatch({ type: CHECK_USER_PREFERENCE, user_preference: res.data });
+      }
+    })
+    .catch(err => {
+      debugger
+    });
+};
+
+export const safeUserPreferences = (firstname, lastname, photo) => dispatch => {
+
+  const userId = localStorage.getItem('user_id');
+
+  const newUserPreference = {
+    first_name: firstname,
+    last_name: lastname,
+    user_id: userId,
+    photo: photo
+  };
+
+
+  axios.post(`${adress}user`, newUserPreference)
+    .then(res => {
+
+      return axios.get(`${adress}user/${userId}`)
+        .then(res => {
+          dispatch({ type: SAFE_USER_PREFERENCE, user_preference: res.data });
+        });
+    })
+    .catch(err => {
+      debugger
+    });
+};
+
+export const updateUserPreference = (firstname, lastname, photo) => dispatch => {
+
+  const userId = localStorage.getItem('user_id');
+
+  const newUserPreference = {
+    first_name: firstname,
+    last_name: lastname,
+    user_id: userId,
+    photo: photo
+  };
+
+  axios.put(`${adress}user/${userId}`, newUserPreference)
+    .then(res => {
+
+      return axios.get(`${adress}user/${userId}`)
+        .then(res => {
+
+          dispatch({ type: UPDATE_USER_PREFERENCE, user_preference: res.data });
+        });
+    })
+    .catch(err => {
+      debugger
+    });
+};

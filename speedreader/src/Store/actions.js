@@ -139,7 +139,7 @@ export const checkUserPreference = () => dispatch => {
 
   const userId = localStorage.getItem('id');
 
-  return axios.get(`${adress}/user/${userId}`)
+  return axios.get(`${userAdress}/user/${userId}`)
     .then(res => {
 
       if (res.data.toString()) {
@@ -163,10 +163,10 @@ export const safeUserPreferences = (firstname, lastname, photo) => dispatch => {
   };
 
 
-  axios.post(`${adress}/user`, newUserPreference)
+  axios.post(`${userAdress}/user`, newUserPreference)
     .then(res => {
 
-      return axios.get(`${adress}/user/${userId}`)
+      return axios.get(`${userAdress}/user/${userId}`)
         .then(res => {
           dispatch({ type: SAFE_USER_PREFERENCE, user_preference: res.data });
         });
@@ -187,10 +187,10 @@ export const updateUserPreference = (firstname, lastname, photo) => dispatch => 
     photo: photo
   };
 
-  axios.put(`${adress}/user/${userId}`, newUserPreference)
+  axios.put(`${userAdress}/user/${userId}`, newUserPreference)
     .then(res => {
 
-      return axios.get(`${adress}/user/${userId}`)
+      return axios.get(`${userAdress}/user/${userId}`)
         .then(res => {
 
           dispatch({ type: UPDATE_USER_PREFERENCE, user_preference: res.data });

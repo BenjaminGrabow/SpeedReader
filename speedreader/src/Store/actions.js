@@ -20,6 +20,8 @@ export const UPDATE_USER_PREFERENCE = 'UPDATE_USER_PREFERENCE';
 
 const adress = 'http://localhost:3500/texts';
 
+const userAdress = 'http://localhost:3500'; 
+
 export const register = creds => dispatch => {
   return axios.post('http://localhost:3500/register', creds)
     .then(res => {
@@ -38,7 +40,7 @@ export const login = creds => dispatch => {
     .then(res => {
 
       localStorage.setItem('token', res.data.token);
-      localStorage.setItem('user_id', res.data.id);
+      localStorage.setItem('id', res.data.id);
 
       dispatch({ type: LOGIN_SUCCESS, payload: res.data })
     })
@@ -135,9 +137,9 @@ export const deleteText = (id) => dispatch => {
 
 export const checkUserPreference = () => dispatch => {
 
-  const userId = localStorage.getItem('user_id');
+  const userId = localStorage.getItem('id');
 
-  return axios.get(`${adress}user/${userId}`)
+  return axios.get(`${adress}/user/${userId}`)
     .then(res => {
 
       if (res.data.toString()) {
@@ -151,7 +153,7 @@ export const checkUserPreference = () => dispatch => {
 
 export const safeUserPreferences = (firstname, lastname, photo) => dispatch => {
 
-  const userId = localStorage.getItem('user_id');
+  const userId = localStorage.getItem('id');
 
   const newUserPreference = {
     first_name: firstname,
@@ -161,10 +163,10 @@ export const safeUserPreferences = (firstname, lastname, photo) => dispatch => {
   };
 
 
-  axios.post(`${adress}user`, newUserPreference)
+  axios.post(`${adress}/user`, newUserPreference)
     .then(res => {
 
-      return axios.get(`${adress}user/${userId}`)
+      return axios.get(`${adress}/user/${userId}`)
         .then(res => {
           dispatch({ type: SAFE_USER_PREFERENCE, user_preference: res.data });
         });
@@ -176,7 +178,7 @@ export const safeUserPreferences = (firstname, lastname, photo) => dispatch => {
 
 export const updateUserPreference = (firstname, lastname, photo) => dispatch => {
 
-  const userId = localStorage.getItem('user_id');
+  const userId = localStorage.getItem('id');
 
   const newUserPreference = {
     first_name: firstname,
@@ -185,10 +187,10 @@ export const updateUserPreference = (firstname, lastname, photo) => dispatch => 
     photo: photo
   };
 
-  axios.put(`${adress}user/${userId}`, newUserPreference)
+  axios.put(`${adress}/user/${userId}`, newUserPreference)
     .then(res => {
 
-      return axios.get(`${adress}user/${userId}`)
+      return axios.get(`${adress}/user/${userId}`)
         .then(res => {
 
           dispatch({ type: UPDATE_USER_PREFERENCE, user_preference: res.data });

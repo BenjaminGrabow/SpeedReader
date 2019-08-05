@@ -5,6 +5,7 @@ import PrivateRoute from './Components/Login/PrivateRoute';
 import TextContainer from './Components/ReadFastText/TextContainer/TextContainer';
 import FindWords from './Components/FindWords/FindWords';
 import Memory from './Components/Memory/Memory';
+import User from './Components/User/User';
 import books from './books.jpg'
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
@@ -28,6 +29,7 @@ function App() {
         <Route path="/text" component={TextContainer} />
         <PrivateRoute path="/protected/find_words" component={FindWords} />
         <PrivateRoute path="/protected/memory" component={Memory} />
+        <PrivateRoute path="/protected/user" component={User} />
     </StyledDiv>
   );
 }

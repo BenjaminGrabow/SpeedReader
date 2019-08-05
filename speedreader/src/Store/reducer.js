@@ -9,7 +9,8 @@ const initialState = {
   textIfPause: [],
   addText: true,
   settings: false,
-}
+  userData: null,
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -70,6 +71,19 @@ const reducer = (state = initialState, action) => {
       copyOfDeletedText.map(text => text.text = text.text.split(' '));
 
       return { ...state, savedTexts: copyOfDeletedText };
+
+      case types.SAFE_USER_PREFERENCE:
+      const newUser = action.user_preference;
+
+      return { ...state, userData: newUser };
+
+    case types.CHECK_USER_PREFERENCE:
+
+      return { ...state, userData: action.user_preference };
+
+    case types.UPDATE_USER_PREFERENCE:
+
+      return { ...state, userData: action.user_preference };
 
     default: return state;
   }

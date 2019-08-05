@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const Words = require('./find-word-model');
+const Words = require('../helpers/find-word-model');
 
 router.get('/find_words', async (req, res) => {
   try {

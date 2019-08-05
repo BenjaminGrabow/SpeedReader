@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const Picture = require('./memory-model.js');
+const Picture = require('../helpers/memory-model.js');
 
 router.get('/memory_game', async (req, res) => {
   try {

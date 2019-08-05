@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const Text = require('./text-model.js');
+const Text = require('../helpers/text-model.js');
 
 router.get('/texts/user/:id', async (req, res) => {
   

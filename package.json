@@ -6,7 +6,7 @@
   "scripts": {
     "server": "nodemon index.js"
   },
-  "author": "Karim Bertacche & Benjamin Grabow",
+  "author": "Benjamin Grabow",
   "devDependencies": {
     "nodemon": "^1.19.1"
   },
@@ -18,6 +18,7 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.19.0",
     "node-sass": "^4.12.0",
-    "sqlite": "^3.0.3"
+    "sqlite": "^3.0.3",
+    "sqlite3": "^4.1.0"
   }
 }
